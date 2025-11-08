@@ -98,6 +98,11 @@ const auth = createServerOnlyFn(() =>
         clientId: process.env.DISCORD_CLIENT_ID as string,
         clientSecret: process.env.DISCORD_CLIENT_SECRET as string
       },
+      github: {
+        overrideUserInfoOnSignIn: true,
+        clientId: process.env.GITHUB_CLIENT_ID as string,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET as string
+      },
       google: {
         overrideUserInfoOnSignIn: true,
         clientId: process.env.GOOGLE_CLIENT_ID as string,
