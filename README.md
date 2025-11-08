@@ -17,13 +17,21 @@ For specific development commands, refer to one of the following:
 
 ## Screenshots
 
-**Home Page**
+**Home Page (Dark Theme)**
 
-![Home Page Image](./assets/screenshots/home_page.png)
+![Home Page Image Dark Theme](./assets/screenshots/home_page_dark_theme.png)
 
-**Login Page**
+**Login Page (Dark Theme)**
 
-![Login Page Image](./assets/screenshots/login_page.png)
+![Login Page Image Dark Theme](./assets/screenshots/login_page_dark_theme.png)
+
+**Home Page (Light Theme)**
+
+![Home Page Image Light Theme](./assets/screenshots/home_page_light_theme.png)
+
+**Login Page (Light Theme)**
+
+![Login Page Image Light Theme](./assets/screenshots/login_page_light_theme.png)
 
 ## Contributors
 
