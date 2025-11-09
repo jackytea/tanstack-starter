@@ -63,7 +63,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         name: 'description',
-        content: 'Example description here.'
+        content: 'TanStack Start template.'
       },
       {
         name: 'theme-color',
@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         property: 'og:title',
-        content: 'Example description here.'
+        content: 'TanStack Start template.'
       },
       {
         property: 'og:site_name',
@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         property: 'og:description',
-        content: 'Example description here.'
+        content: 'TanStack Start template.'
       },
       {
         property: 'og:image',
@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         property: 'twitter:description',
-        content: 'Example description here.'
+        content: 'TanStack Start template.'
       },
       {
         property: 'twitter:image',
