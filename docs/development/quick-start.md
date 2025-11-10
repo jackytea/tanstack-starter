@@ -6,6 +6,7 @@ Ensure you have one of the following programs installed on your machine:
 
 - [`docker`](https://www.docker.com/)
 - [`node`](https://nodejs.org/)
+- [`deno`](https://deno.com/)
 - [`bun`](https://bun.sh/)
 
 ### **2. Environment**
@@ -74,6 +75,11 @@ If you are using [`pnpm`](https://www.npmjs.com/package/pnpm):
 pnpm install  && pnpm exec drizzle-kit migrate && pnpm dev
 ```
 
+If you are using [`deno`](https://www.npmjs.com/package/deno):
+```bash
+deno install && deno run -A npm:drizzle-kit migrate && deno task dev
+```
+
 If you are using [`bun`](https://www.npmjs.com/package/bun):
 ```bash
 bun install && bunx drizzle-kit migrate && bun run dev
@@ -95,6 +101,11 @@ npm install; if ($?) { npx drizzle-kit migrate }; if ($?) { npm run dev }
 If you are using [`pnpm`](https://www.npmjs.com/package/pnpm):
 ```powershell
 pnpm install; if ($?) { pnpm exec drizzle-kit migrate }; if ($?) { pnpm dev }
+```
+
+If you are using [`deno`](https://www.npmjs.com/package/deno):
+```powershell
+deno install; if ($?) { deno run -A npm:drizzle-kit migrate }; if ($?) { deno task dev }
 ```
 
 If you are using [`bun`](https://www.npmjs.com/package/bun):
