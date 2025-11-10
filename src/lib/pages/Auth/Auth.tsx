@@ -112,7 +112,7 @@ const Auth = () => {
     } catch {
       setIsLoading(false)
     } finally {
-      setIsLoading(true)
+      setIsLoading(false)
     }
   }
 

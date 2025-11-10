@@ -7,7 +7,7 @@ import { ErrorBoundary } from '@/pages/ErrorBoundary/ErrorBoundary'
 import { NotFound } from '@/pages/NotFound/NotFound'
 import { routeTree } from '@/routeTree.gen'
 
-const getRouter = () => {
+export function getRouter() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -37,5 +37,3 @@ declare module '@tanstack/react-router' {
     router: ReturnType<typeof getRouter>
   }
 }
-
-export { getRouter }
