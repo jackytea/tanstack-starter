@@ -29,6 +29,9 @@ pnpm build
 
 # start app in prod mode
 pnpm start
+
+# clear the pkg cache
+pnpm store prune --force
 ```
 
 Utility commands for [`pnpm`](https://www.npmjs.com/package/pnpm):

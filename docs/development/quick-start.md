@@ -13,7 +13,7 @@ Ensure you have one of the following programs installed on your machine:
 Ensure you have these values populated in your `.env` file:
 
 ```bash
-# app config
+# app config - see https://nitro.build/config and https://vite.dev/config/
 APP_PORT=
 APP_HOST=
 NITRO_PORT=
@@ -21,7 +21,7 @@ VITE_BASE_URL=
 VITE_NITRO_PRESET=
 VITE_COOKIE_EXPIRY_DATE=
 
-# database credentials
+# database credentials - see https://hub.docker.com/_/postgres#environment-variables
 DATABASE_URL=
 DATABASE_NAME=
 DATABASE_USER=
@@ -30,20 +30,20 @@ DATABASE_HOST=
 DATABASE_SCHEMA=
 DATABASE_PASSWORD=
 
-# auth config
+# auth config - see https://www.better-auth.com/docs/installation
 BETTER_AUTH_URL=
 BETTER_AUTH_SECRET=
 BETTER_AUTH_JWT_SECRET=
 
-# discord oauth
+# discord oauth - see https://www.better-auth.com/docs/authentication/discord
 DISCORD_CLIENT_ID=
 DISCORD_CLIENT_SECRET=
 
-# google oauth
+# google oauth - see https://www.better-auth.com/docs/authentication/google
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
-# github oauth
+# github oauth - see https://www.better-auth.com/docs/authentication/github
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 ```
@@ -55,7 +55,7 @@ Ensure you have a [`postgres`](https://www.postgresql.org/) database instance ru
 If you have [`docker`](https://www.docker.com/) installed, you can spin up a database with the following command:
 
 ```bash
-docker compose -f docker-compose.postgres.yaml up --build -d
+docker compose -f docker-compose.yaml up --build -d
 ```
 
 ### **4. Running The App**
@@ -81,8 +81,9 @@ bun install && bunx drizzle-kit migrate && bun run dev
 
 If you are using [`docker`](https://docker.com):
 ```bash
-docker compose -f docker-compose.<npm | pnpm | bun>.yaml up --build -d
+docker compose -f docker-compose.yaml up --build -d
 ```
+> **Note For Docker:** You will still have to `install` dependencies and run `drizzle-kit migrate` with your package manager after.
 
 **PowerShell Commands**:
 
@@ -103,5 +104,6 @@ bun install; if ($?) { bunx drizzle-kit migrate }; if ($?) { bun run dev }
 
 If you are using [`docker`](https://docker.com):
 ```powershell
-docker compose -f docker-compose.<npm | pnpm | bun>.yaml up --build -d
+docker compose -f docker-compose.yaml up --build -d
 ```
+> **Note For Docker:** You will still have to `install` dependencies and run `drizzle-kit migrate` with your package manager after.

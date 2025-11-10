@@ -29,6 +29,9 @@ npm run build
 
 # start app in prod mode
 npm run start
+
+# clear the pkg cache
+npm cache clean --force
 ```
 
 Utility commands for [`npm`](https://www.npmjs.com/package/npm):

@@ -18,7 +18,9 @@ This template includes the following:
 
 To get up to speed, see the [`quick-start`](./docs/development/quick-start.md) guide.
 
-For specific development commands, refer to one of the following:
+This project uses [`pnpm`](https://www.npmjs.com/package/pnpm) but you can use the package manager of your choice!
+
+For specific development commands, refer to one of the following documents:
 
 - [`npm`](./docs/commands/npm.md)
 - [`bun`](./docs/commands/bun.md)

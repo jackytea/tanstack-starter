@@ -29,6 +29,9 @@ bun run build
 
 # start app in prod mode
 bun run start
+
+# clear the pkg cache
+bun pm cache rm --force
 ```
 
 Utility commands for [`bun`](https://www.npmjs.com/package/bun):

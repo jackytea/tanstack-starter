@@ -2,7 +2,7 @@ services:
   app:
     container_name: app
     build:
-      dockerfile: Dockerfile.bun
+      dockerfile: Dockerfile
       context: .
     env_file:
       - .env
