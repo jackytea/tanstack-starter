@@ -131,3 +131,39 @@ EXPOSE $NITRO_PORT
 
 CMD ["bun", "run", "start"]
 ```
+
+**Deno**
+
+If you want to use [`deno`](https://www.npmjs.com/package/deno) in your [`Dockerfile`](../../Dockerfile), replace it with this:
+
+```dockerfile
+FROM denoland/deno:alpine-2.5.6
+
+ARG APP_PORT
+
+ARG APP_HOST
+
+ARG NITRO_PORT
+
+ENV APP_PORT=$APP_PORT
+
+ENV APP_HOST=$APP_HOST
+
+ENV NITRO_PORT=$NITRO_PORT
+
+ENV SHELL=bash
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN deno install
+
+COPY . ./
+
+RUN deno task build
+
+EXPOSE $NITRO_PORT
+
+CMD ["deno", "task", "start"]
+```

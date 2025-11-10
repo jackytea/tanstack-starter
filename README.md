@@ -13,6 +13,7 @@ This template includes the following:
 - [`better-auth`](https://www.better-auth.com/)
 - [`shadcn/ui`](https://ui.shadcn.com/)
 - [`i18next`](https://react.i18next.com/)
+- [`nitro`](https://nitro.build/)
 
 ## Development
 
@@ -25,6 +26,7 @@ For specific development commands, refer to one of the following documents:
 - [`npm`](./docs/commands/npm.md)
 - [`bun`](./docs/commands/bun.md)
 - [`pnpm`](./docs/commands/pnpm.md)
+- [`deno`](./docs/commands/deno.md)
 - [`docker`](./docs/commands/docker.md)
 
 ## Screenshots
