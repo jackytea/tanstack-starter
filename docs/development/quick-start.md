@@ -18,6 +18,7 @@ Ensure you have these values populated in your `.env` file:
 APP_PORT=
 APP_HOST=
 NITRO_PORT=
+VITE_APP_PORT=
 VITE_BASE_URL=
 VITE_NITRO_PRESET=
 VITE_COOKIE_EXPIRY_DATE=
