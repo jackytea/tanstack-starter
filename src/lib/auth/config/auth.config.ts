@@ -66,8 +66,8 @@ const auth = createServerOnlyFn(() =>
       }
     },
     emailAndPassword: {
-      enabled: (process.env.VITE_GUEST_DISABLE_SIGN_UP as string) !== 'true',
-      disableSignUp: (process.env.VITE_GUEST_DISABLE_SIGN_UP as string) === 'true'
+      enabled: false,
+      disableSignUp: true
     },
     user: {
       deleteUser: {
