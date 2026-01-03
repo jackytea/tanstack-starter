@@ -1,4 +1,4 @@
-FROM node:25.1.0-alpine3.22
+FROM node:25.2.1-alpine3.22
 
 ARG APP_PORT
 

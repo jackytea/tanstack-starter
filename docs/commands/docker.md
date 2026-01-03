@@ -27,7 +27,7 @@ docker volume prune --force --all
 If you want to use [`npm`](https://www.npmjs.com/package/npm) in your [`Dockerfile`](../../Dockerfile), replace it with this:
 
 ```dockerfile
-FROM node:25.1.0-alpine3.22
+FROM node:25.2.1-alpine3.22
 
 ARG APP_PORT
 
@@ -61,7 +61,7 @@ CMD ["npm", "run", "start"]
 If you want to use [`pnpm`](https://www.npmjs.com/package/pnpm) in your [`Dockerfile`](../../Dockerfile), replace it with this:
 
 ```dockerfile
-FROM node:25.1.0-alpine3.22
+FROM node:25.2.1-alpine3.22
 
 ARG APP_PORT
 
@@ -101,7 +101,7 @@ CMD ["pnpm", "start"]
 If you want to use [`bun`](https://www.npmjs.com/package/bun) in your [`Dockerfile`](../../Dockerfile), replace it with this:
 
 ```dockerfile
-FROM oven/bun:1.3.1-alpine
+FROM oven/bun:1.3.5-alpine
 
 ARG APP_PORT
 
@@ -137,7 +137,7 @@ CMD ["bun", "run", "start"]
 If you want to use [`deno`](https://www.npmjs.com/package/deno) in your [`Dockerfile`](../../Dockerfile), replace it with this:
 
 ```dockerfile
-FROM denoland/deno:alpine-2.5.6
+FROM denoland/deno:alpine-2.6.3
 
 ARG APP_PORT
 
