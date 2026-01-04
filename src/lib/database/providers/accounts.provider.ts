@@ -1,122 +1,29 @@
-import { and, eq, inArray, not } from 'drizzle-orm'
+import { SelectedFields, SelectedFieldsFlat } from 'drizzle-orm/pg-core'
 import { accounts } from '@/database/schema/account.schema'
-import { organizations } from '@/database/schema/organization.schema'
-import { users } from '@/database/schema/user.schema'
-import {
-  deleteRecords,
-  queryMultipleRecords,
-  querySingleRecordWithJoin,
-  updateRecords
-} from '@/database/utils/database.utils'
-import type { AccountPayload } from '@/types/account.type'
-import { firstElement } from '@/utils/array.utils'
-import { handleErrorWithArray, handleErrorWithNull } from '@/utils/function.utils'
+import { deleteRecords, selectRecords, updateRecords } from '@/database/utils/database.utils'
+import { AccountPayload } from '@/types/account.type'
+import { DatabaseOptions } from '@/types/database.type'
 
-const readAccounts = async (accountId: string) => {
-  return handleErrorWithArray(() =>
-    queryMultipleRecords(
-      accounts,
-      {
-        id: accounts.id,
-        name: accounts.name,
-        image: accounts.image,
-        userId: accounts.userId,
-        description: accounts.description
-      },
-      {
-        where: not(eq(accounts.id, accountId))
-      }
-    )
-  )
-}
-
-const readAccountsByUserId = async (userId: string) => {
-  return handleErrorWithArray(() =>
-    queryMultipleRecords(
-      accounts,
-      {
-        id: accounts.id,
-        userId: accounts.userId
-      },
-      {
-        where: eq(accounts.userId, userId)
-      }
-    )
-  )
-}
-
-const readAccount = async (accountId: string) => {
-  return handleErrorWithNull(() =>
-    querySingleRecordWithJoin(
-      accounts,
-      {
-        id: accounts.id,
-        name: accounts.name,
-        image: accounts.image,
-        description: accounts.description,
-        organization: {
-          id: organizations.id,
-          name: organizations.name,
-          slug: organizations.slug,
-          logo: organizations.logo
-        }
-      },
-      {
-        where: eq(accounts.id, accountId),
-        join: {
-          joinTable: organizations,
-          joinType: 'leftJoin',
-          joinQuery: eq(accounts.activeOrganizationId, organizations.id)
-        }
-      }
-    ).then(firstElement)
-  )
-}
-
-const readAccountByUserIdAndProviderId = async (userId: string, providerId: string) => {
-  return handleErrorWithNull(() =>
-    querySingleRecordWithJoin(
-      accounts,
-      {
-        id: accounts.id,
-        userName: users.name,
-        userImage: users.image,
-        userDescription: users.description,
-        activeOrganizationId: accounts.activeOrganizationId
-      },
-      {
-        where: and(eq(accounts.userId, userId), eq(accounts.providerId, providerId)),
-        join: {
-          joinTable: users,
-          joinType: 'innerJoin',
-          joinQuery: eq(accounts.userId, users.id)
-        }
-      }
-    ).then(firstElement)
-  )
-}
-
-const updateAccounts = async (
-  userId: string,
-  ids: string[],
-  accountPayload: Omit<Partial<AccountPayload>, 'userId' | 'id'>
+const selectAccounts = <Select extends SelectedFields>(
+  select: Select = {} as Select,
+  options: DatabaseOptions = {} as DatabaseOptions
 ) => {
-  return handleErrorWithArray(() =>
-    updateRecords(accounts, accountPayload, {
-      where: and(eq(accounts.userId, userId), inArray(accounts.id, ids))
-    })
-  )
+  return selectRecords(accounts, select, options)
 }
 
-const destroyAccounts = async (ids: string[]) => {
-  return handleErrorWithArray(() => deleteRecords(accounts, { where: inArray(accounts.id, ids) }))
+const updateAccounts = <ReturnedFields extends SelectedFieldsFlat>(
+  data: Omit<Partial<AccountPayload>, 'id' | 'userId'>,
+  options: DatabaseOptions = {} as DatabaseOptions,
+  returnedFields: ReturnedFields = {} as ReturnedFields
+) => {
+  return updateRecords(accounts, data, options, returnedFields)
 }
 
-export {
-  destroyAccounts,
-  readAccount,
-  readAccountByUserIdAndProviderId,
-  readAccounts,
-  readAccountsByUserId,
-  updateAccounts
+const deleteAccounts = <ReturnedFields extends SelectedFieldsFlat>(
+  options: DatabaseOptions = {} as DatabaseOptions,
+  returnedFields: ReturnedFields = {} as ReturnedFields
+) => {
+  return deleteRecords(accounts, options, returnedFields)
 }
+
+export { deleteAccounts, selectAccounts, updateAccounts }

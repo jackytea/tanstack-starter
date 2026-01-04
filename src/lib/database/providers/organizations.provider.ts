@@ -1,24 +1,13 @@
-import { SQL } from 'drizzle-orm'
+import { SelectedFields } from 'drizzle-orm/pg-core'
 import { organizations } from '@/database/schema/organization.schema'
-import { queryMultipleRecords } from '@/database/utils/database.utils'
-import { handleErrorWithArray } from '@/utils/function.utils'
+import { selectRecords } from '@/database/utils/database.utils'
+import { DatabaseOptions } from '@/types/database.type'
 
-const readOrganizations = async (where?: SQL<unknown>) => {
-  return handleErrorWithArray(() =>
-    queryMultipleRecords(
-      organizations,
-      {
-        id: organizations.id,
-        name: organizations.name,
-        slug: organizations.slug,
-        logo: organizations.logo,
-        metadata: organizations.metadata
-      },
-      {
-        where
-      }
-    )
-  )
+const selectOrganizations = <Select extends SelectedFields>(
+  select: Select = {} as Select,
+  options: DatabaseOptions = {} as DatabaseOptions
+) => {
+  return selectRecords(organizations, select, options)
 }
 
-export { readOrganizations }
+export { selectOrganizations }

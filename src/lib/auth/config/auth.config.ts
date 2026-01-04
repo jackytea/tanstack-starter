@@ -4,18 +4,18 @@ import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { customSession, organization } from 'better-auth/plugins'
 import { tanstackStartCookies } from 'better-auth/tanstack-start'
+import { getAccountByUserIdAndProviderIdController, updateAccountController } from '@/controllers/accounts.controller'
 import { database } from '@/database/config/database.config'
-import { readAccountByUserIdAndProviderId, updateAccounts } from '@/database/providers/accounts.provider'
 import type { AuthProviderWithEmail } from '@/types/auth.type'
 
 const populateSessionAccount = async (session: Session, providerId: AuthProviderWithEmail) => {
-  const account = await readAccountByUserIdAndProviderId(session.userId, providerId)
+  const account = await getAccountByUserIdAndProviderIdController(session.userId, providerId)
 
   if (!account) {
     return
   }
 
-  await updateAccounts(session.userId, [account.id], {
+  await updateAccountController(account.id, session.userId, {
     name: account.userName,
     image: account.userImage,
     description: account.userDescription,

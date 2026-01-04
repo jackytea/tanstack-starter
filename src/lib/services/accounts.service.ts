@@ -1,12 +1,12 @@
 import { createServerFn } from '@tanstack/react-start'
 import {
-  destroyAccounts,
-  readAccount,
-  readAccounts,
-  readAccountsByUserId,
-  updateAccounts
-} from '@/database/providers/accounts.provider'
-import { destroyUsers } from '@/database/providers/users.provider'
+  deleteAccountController,
+  getAccountController,
+  getAccountsByUserIdController,
+  getAccountsController,
+  updateAccountController
+} from '@/controllers/accounts.controller'
+import { deleteUserController } from '@/controllers/users.controller'
 import { authMiddleware } from '@/middleware/auth.middleware'
 
 const getAccounts = createServerFn({
@@ -14,7 +14,7 @@ const getAccounts = createServerFn({
 })
   .middleware([authMiddleware])
   .handler(async ({ context }) => {
-    return readAccounts(context.user.accountId)
+    return getAccountsController(context.user.accountId)
   })
 
 const getAccount = createServerFn({
@@ -22,7 +22,7 @@ const getAccount = createServerFn({
 })
   .middleware([authMiddleware])
   .handler(async ({ context }) => {
-    return readAccount(context.user.accountId)
+    return getAccountController(context.user.accountId)
   })
 
 const updateAccount = createServerFn({
@@ -31,7 +31,7 @@ const updateAccount = createServerFn({
   .middleware([authMiddleware])
   .inputValidator((data: { activeOrganizationId: string }) => data)
   .handler(async ({ context, data }) => {
-    return updateAccounts(context.user.id, [context.user.accountId], {
+    return updateAccountController(context.user.accountId, context.user.id, {
       activeOrganizationId: data.activeOrganizationId
     })
   })
@@ -41,9 +41,11 @@ const deleteAccount = createServerFn({
 })
   .middleware([authMiddleware])
   .handler(async ({ context }) => {
-    const accounts = await readAccountsByUserId(context.user.id)
+    const accounts = await getAccountsByUserIdController(context.user.id)
 
-    return accounts.length <= 1 ? destroyUsers([context.user.id]) : destroyAccounts([context.user.accountId])
+    return accounts.length <= 1
+      ? deleteUserController(context.user.id)
+      : deleteAccountController(context.user.accountId)
   })
 
 export { deleteAccount, getAccount, getAccounts, updateAccount }

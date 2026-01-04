@@ -1,133 +1,53 @@
 import type { InferInsertModel } from 'drizzle-orm'
-import type { PgTable, SelectedFields, TableConfig } from 'drizzle-orm/pg-core'
+import type { PgTable, SelectedFields, SelectedFieldsFlat, TableConfig } from 'drizzle-orm/pg-core'
 import { database } from '@/database/config/database.config'
-import type { DBOptions, DBOptionsWithJoin } from '@/types/database.type'
+import type { DatabaseOptions } from '@/types/database.type'
 
-const querySingleRecord = <SelectType extends SelectedFields, TableType extends TableConfig>(
-  table: PgTable<TableType>,
-  select: SelectType,
-  options: DBOptions
+const selectRecords = <Select extends SelectedFields, Table extends TableConfig>(
+  table: PgTable<Table>,
+  select: Select = {} as Select,
+  options: DatabaseOptions = {} as DatabaseOptions
 ) => {
-  const { where } = options
-  const queryBuilder = database.select(select).from(table)
+  return ((query) => {
+    if (options.where) {
+      query.where(options.where)
+    }
 
-  if (where) {
-    queryBuilder.where(where).limit(1)
-  }
+    if (options.orderBy) {
+      query.orderBy(options.orderBy)
+    }
 
-  return queryBuilder
+    if (options.pagination) {
+      query.limit(options.pagination.limit).offset(options.pagination.offset)
+    }
+
+    return query
+  })(database.select(select).from(table))
 }
 
-const querySingleRecordWithJoin = <
-  SelectType extends SelectedFields,
-  TableType extends TableConfig,
-  JoinTableType extends TableConfig
->(
-  table: PgTable<TableType>,
-  select: SelectType,
-  options: DBOptionsWithJoin<JoinTableType>
+const insertRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends TableConfig>(
+  table: PgTable<Table>,
+  data: InferInsertModel<PgTable<Table>>[],
+  returnedFields: ReturnedFields = {} as ReturnedFields
 ) => {
-  const { where, join } = options
-  const queryBuilder = database.select(select).from(table)
-
-  if (where) {
-    queryBuilder.where(where).limit(1)
-  }
-
-  return queryBuilder[join.joinType](join.joinTable, join.joinQuery)
+  return database.insert(table).values(data).returning(returnedFields)
 }
 
-const queryMultipleRecords = <SelectType extends SelectedFields, TableType extends TableConfig>(
-  table: PgTable<TableType>,
-  select: SelectType,
-  options: DBOptions
+const updateRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends TableConfig>(
+  table: PgTable<Table>,
+  data: Partial<InferInsertModel<PgTable<Table>>>,
+  options: DatabaseOptions = {} as DatabaseOptions,
+  returnedFields: ReturnedFields = {} as ReturnedFields
 ) => {
-  const { where, orderBy, pagination } = options
-  const queryBuilder = database.select(select).from(table)
-
-  if (where) {
-    queryBuilder.where(where)
-  }
-
-  if (orderBy) {
-    queryBuilder.orderBy(orderBy)
-  }
-
-  if (pagination) {
-    queryBuilder.limit(pagination.limit).offset(pagination.offset)
-  }
-
-  return queryBuilder
+  return database.update(table).set(data).where(options.where).returning(returnedFields)
 }
 
-const queryMultipleRecordsWithJoin = <
-  SelectType extends SelectedFields,
-  TableType extends TableConfig,
-  JoinTableType extends TableConfig
->(
-  table: PgTable<TableType>,
-  select: SelectType,
-  options: DBOptionsWithJoin<JoinTableType>
+const deleteRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends TableConfig>(
+  table: PgTable<Table>,
+  options: DatabaseOptions = {} as DatabaseOptions,
+  returnedFields: ReturnedFields = {} as ReturnedFields
 ) => {
-  const { where, orderBy, pagination, join } = options
-  const queryBuilder = database.select(select).from(table)
-
-  if (where) {
-    queryBuilder.where(where)
-  }
-
-  if (orderBy) {
-    queryBuilder.orderBy(orderBy)
-  }
-
-  if (pagination) {
-    queryBuilder.limit(pagination.limit).offset(pagination.offset)
-  }
-
-  return queryBuilder[join.joinType](join.joinTable, join.joinQuery)
+  return database.delete(table).where(options.where).returning(returnedFields)
 }
 
-const insertRecords = <TableType extends TableConfig>(
-  table: PgTable<TableType>,
-  data: InferInsertModel<PgTable<TableType>>[]
-) => {
-  const queryBuilder = database.insert(table).values(data)
-
-  return queryBuilder.returning()
-}
-
-const updateRecords = <TableType extends TableConfig>(
-  table: PgTable<TableType>,
-  data: Partial<InferInsertModel<PgTable<TableType>>>,
-  options: DBOptions
-) => {
-  const { where } = options
-  const queryBuilder = database.update(table).set(data)
-
-  if (where) {
-    queryBuilder.where(where)
-  }
-
-  return queryBuilder.returning()
-}
-
-const deleteRecords = <TableType extends TableConfig>(table: PgTable<TableType>, options: DBOptions) => {
-  const { where } = options
-  const queryBuilder = database.delete(table)
-
-  if (where) {
-    queryBuilder.where(where)
-  }
-
-  return queryBuilder.returning()
-}
-
-export {
-  deleteRecords,
-  insertRecords,
-  queryMultipleRecords,
-  queryMultipleRecordsWithJoin,
-  querySingleRecord,
-  querySingleRecordWithJoin,
-  updateRecords
-}
+export { deleteRecords, insertRecords, selectRecords, updateRecords }

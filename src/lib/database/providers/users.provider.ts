@@ -1,37 +1,20 @@
-import { eq, inArray } from 'drizzle-orm'
-import { accounts } from '@/database/schema/account.schema'
+import { SelectedFields, SelectedFieldsFlat } from 'drizzle-orm/pg-core'
 import { users } from '@/database/schema/user.schema'
-import { deleteRecords, querySingleRecordWithJoin } from '@/database/utils/database.utils'
-import { firstElement } from '@/utils/array.utils'
-import { handleErrorWithArray, handleErrorWithNull } from '@/utils/function.utils'
+import { deleteRecords, selectRecords } from '@/database/utils/database.utils'
+import { DatabaseOptions } from '@/types/database.type'
 
-const readUser = async (userId: string, accountId: string) => {
-  return handleErrorWithNull(() =>
-    querySingleRecordWithJoin(
-      users,
-      {
-        id: users.id,
-        name: users.name,
-        image: users.image,
-        email: users.email,
-        description: users.description,
-        providerId: accounts.providerId,
-        emailVerified: users.emailVerified
-      },
-      {
-        where: eq(users.id, userId),
-        join: {
-          joinTable: accounts,
-          joinType: 'innerJoin',
-          joinQuery: eq(accounts.id, accountId)
-        }
-      }
-    ).then(firstElement)
-  )
+const selectUsers = <Select extends SelectedFields>(
+  select: Select = {} as Select,
+  options: DatabaseOptions = {} as DatabaseOptions
+) => {
+  return selectRecords(users, select, options)
 }
 
-const destroyUsers = async (ids: string[]) => {
-  return handleErrorWithArray(() => deleteRecords(users, { where: inArray(users.id, ids) }))
+const deleteUsers = <ReturnedFields extends SelectedFieldsFlat>(
+  options: DatabaseOptions = {} as DatabaseOptions,
+  returnedFields: ReturnedFields = {} as ReturnedFields
+) => {
+  return deleteRecords(users, options, returnedFields)
 }
 
-export { destroyUsers, readUser }
+export { deleteUsers, selectUsers }
