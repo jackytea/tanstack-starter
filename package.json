@@ -74,10 +74,6 @@
   "optionalDependencies": {
     "bufferutil": "^4.1.0"
   },
-  "overrides": {
-    "glob": "^11.0.0",
-    "rimraf": "^6.0.1"
-  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@biomejs/biome",
@@ -88,6 +84,10 @@
     ],
     "ignoredBuiltDependencies": [
       "@tailwindcss/oxide"
-    ]
+    ],
+    "overrides": {
+      "esbuild@<=0.24.2": ">=0.25.0",
+      "js-yaml@>=4.0.0 <4.1.1": ">=4.1.1"
+    }
   }
 }
