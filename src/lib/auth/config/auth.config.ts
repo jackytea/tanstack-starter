@@ -4,29 +4,54 @@ import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { customSession, organization } from 'better-auth/plugins'
 import { tanstackStartCookies } from 'better-auth/tanstack-start'
-import { getAccountByUserIdAndProviderIdController, updateAccountController } from '@/controllers/accounts.controller'
+import { and, eq } from 'drizzle-orm'
 import { database } from '@/database/config/database.config'
+import { selectAccounts, updateAccounts } from '@/lib/database/providers/accounts.provider'
+import { accounts } from '@/lib/database/schema/account.schema'
+import { users } from '@/lib/database/schema/user.schema'
+import { firstElement } from '@/lib/utils/array.utils'
 import type { AuthProviderWithEmail } from '@/types/auth.type'
 
 const populateSessionAccount = async (session: Session, providerId: AuthProviderWithEmail) => {
-  const account = await getAccountByUserIdAndProviderIdController(session.userId, providerId)
+  const currentAccount = await selectAccounts(
+    {
+      id: accounts.id,
+      userName: users.name,
+      userImage: users.image,
+      userDescription: users.description,
+      activeOrganizationId: accounts.activeOrganizationId
+    },
+    {
+      where: and(eq(accounts.userId, session.userId), eq(accounts.providerId, providerId))
+    }
+  )
+    .innerJoin(users, eq(accounts.userId, users.id))
+    .then(firstElement)
 
-  if (!account) {
+  if (!currentAccount) {
     return
   }
 
-  await updateAccountController(account.id, session.userId, {
-    name: account.userName,
-    image: account.userImage,
-    description: account.userDescription,
-    activeOrganizationId: account.activeOrganizationId
-  })
+  await updateAccounts(
+    {
+      name: currentAccount.userName,
+      image: currentAccount.userImage,
+      description: currentAccount.userDescription,
+      activeOrganizationId: currentAccount.activeOrganizationId
+    },
+    {
+      where: and(eq(accounts.id, currentAccount.id), eq(accounts.userId, session.userId))
+    },
+    {
+      id: accounts.id
+    }
+  )
 
   return {
     data: {
       ...session,
-      accountId: account.id,
-      activeOrganizationId: account.activeOrganizationId
+      accountId: currentAccount.id,
+      activeOrganizationId: currentAccount.activeOrganizationId
     }
   }
 }

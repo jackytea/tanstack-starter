@@ -49,25 +49,6 @@ const getAccountController = async (id: string) => {
   )
 }
 
-const getAccountByUserIdAndProviderIdController = async (userId: string, providerId: string) => {
-  return handleErrorWithNull(() =>
-    selectAccounts(
-      {
-        id: accounts.id,
-        userName: users.name,
-        userImage: users.image,
-        userDescription: users.description,
-        activeOrganizationId: accounts.activeOrganizationId
-      },
-      {
-        where: and(eq(accounts.userId, userId), eq(accounts.providerId, providerId))
-      }
-    )
-      .innerJoin(users, eq(accounts.userId, users.id))
-      .then(firstElement)
-  )
-}
-
 const updateAccountController = async (
   id: string,
   userId: string,
@@ -110,10 +91,4 @@ const deleteAccountController = async (id: string, userId: string) => {
   })
 }
 
-export {
-  deleteAccountController,
-  getAccountByUserIdAndProviderIdController,
-  getAccountController,
-  getAccountsController,
-  updateAccountController
-}
+export { deleteAccountController, getAccountController, getAccountsController, updateAccountController }
