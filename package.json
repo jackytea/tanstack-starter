@@ -9,7 +9,7 @@
   "main": "src/client.tsx",
   "description": "TanStack Start template.",
   "engines": {
-    "node": ">=22.x",
+    "node": ">=24.x",
     "deno": ">=2.5",
     "pnpm": ">=10",
     "bun": ">=1.3",

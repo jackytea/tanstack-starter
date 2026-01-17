@@ -6,13 +6,13 @@ import { ENVIRONMENTS } from '@/constants/env.constants'
 dotEnvConfig({ quiet: true })
 
 const config = defineConfig({
-  breakpoints: true,
+  breakpoints: false,
   dialect: 'postgresql',
-  schema: 'src/lib/database/schema',
-  out: 'src/lib/database/migrations',
+  schema: './src/lib/database/schema',
+  out: './src/lib/database/migrations',
   dbCredentials: {
     url: process.env.DATABASE_URL as string,
-    ssl: process.env.NODE_ENV === ENVIRONMENTS.PROD
+    ssl: process.env.NODE_ENV === ENVIRONMENTS.PROD ? 'verify-full' : 'prefer'
   }
 }) satisfies Config
 
