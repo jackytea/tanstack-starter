@@ -31,6 +31,7 @@
       "@/services/*": ["src/lib/services/*"],
       "@/styles/*": ["src/lib/styles/*"],
       "@/sync/*": ["src/lib/sync/*"],
+      "@/translations/*": ["src/lib/translations/*"],
       "@/types/*": ["src/lib/types/*"],
       "@/ui/*": ["src/lib/ui/*"],
       "@/utils/*": ["src/lib/utils/*"]

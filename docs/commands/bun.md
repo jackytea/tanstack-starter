@@ -37,6 +37,9 @@ bun pm cache rm --force
 Utility commands for [`bun`](https://www.npmjs.com/package/bun):
 
 ```bash
+# verify all dependencies
+bun audit
+
 # update all dependencies
 bun update
 

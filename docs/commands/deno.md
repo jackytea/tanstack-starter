@@ -35,6 +35,9 @@ deno clean
 
 Utility commands for [`deno`](https://www.npmjs.com/package/deno):
 ```bash
+# verify all dependencies
+deno audit
+
 # check for latest versions
 deno outdated
 
