@@ -8,7 +8,7 @@ dotEnvConfig({ quiet: true })
 const config = defineConfig({
   breakpoints: false,
   dialect: 'postgresql',
-  schema: './src/lib/database/schema',
+  schema: './src/lib/database/schemas',
   out: './src/lib/database/migrations',
   dbCredentials: {
     url: process.env.DATABASE_URL as string,

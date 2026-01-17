@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm'
 import { selectUsers } from '@/database/providers/users.provider'
-import { accounts } from '@/database/schema/account.schema'
-import { users } from '@/database/schema/user.schema'
+import { accounts } from '@/database/schemas/account.schema'
+import { users } from '@/database/schemas/user.schema'
 import { firstElement } from '@/utils/array.utils'
 import { handleErrorWithNull } from '@/utils/function.utils'
 

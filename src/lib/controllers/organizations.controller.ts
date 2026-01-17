@@ -1,5 +1,5 @@
 import { selectOrganizations } from '@/database/providers/organizations.provider'
-import { organizations } from '@/database/schema/organization.schema'
+import { organizations } from '@/database/schemas/organization.schema'
 import { handleErrorWithArray } from '@/utils/function.utils'
 
 const getOrganizationsController = async () => {

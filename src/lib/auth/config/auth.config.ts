@@ -6,11 +6,11 @@ import { customSession, organization } from 'better-auth/plugins'
 import { tanstackStartCookies } from 'better-auth/tanstack-start'
 import { and, eq } from 'drizzle-orm'
 import { database } from '@/database/config/database.config'
-import { selectAccounts, updateAccounts } from '@/lib/database/providers/accounts.provider'
-import { accounts } from '@/lib/database/schema/account.schema'
-import { users } from '@/lib/database/schema/user.schema'
-import { firstElement } from '@/lib/utils/array.utils'
+import { selectAccounts, updateAccounts } from '@/database/providers/accounts.provider'
+import { accounts } from '@/database/schemas/account.schema'
+import { users } from '@/database/schemas/user.schema'
 import type { AuthProviderWithEmail } from '@/types/auth.type'
+import { firstElement } from '@/utils/array.utils'
 
 const populateSessionAccount = async (session: Session, providerId: AuthProviderWithEmail) => {
   const currentAccount = await selectAccounts(

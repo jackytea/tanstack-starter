@@ -1,4 +1,4 @@
-import { users } from '@/database/schema/user.schema'
+import { users } from '@/database/schemas/user.schema'
 
 type User = typeof users.$inferSelect
 type UserPayload = typeof users.$inferInsert

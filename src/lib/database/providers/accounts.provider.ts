@@ -1,5 +1,5 @@
 import { SelectedFields, SelectedFieldsFlat } from 'drizzle-orm/pg-core'
-import { accounts } from '@/database/schema/account.schema'
+import { accounts } from '@/database/schemas/account.schema'
 import { deleteRecords, selectRecords, updateRecords } from '@/database/utils/database.utils'
 import { AccountPayload } from '@/types/account.type'
 import { DatabaseOptions } from '@/types/database.type'

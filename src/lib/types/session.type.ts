@@ -1,4 +1,4 @@
-import { sessions } from '@/database/schema/session.schema'
+import { sessions } from '@/database/schemas/session.schema'
 
 type Session = typeof sessions.$inferSelect
 type SessionPayload = typeof sessions.$inferInsert

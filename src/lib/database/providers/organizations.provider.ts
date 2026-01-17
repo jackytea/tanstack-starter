@@ -1,5 +1,5 @@
 import { SelectedFields } from 'drizzle-orm/pg-core'
-import { organizations } from '@/database/schema/organization.schema'
+import { organizations } from '@/database/schemas/organization.schema'
 import { selectRecords } from '@/database/utils/database.utils'
 import { DatabaseOptions } from '@/types/database.type'
 

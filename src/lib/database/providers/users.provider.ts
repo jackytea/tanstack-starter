@@ -1,5 +1,5 @@
 import { SelectedFields, SelectedFieldsFlat } from 'drizzle-orm/pg-core'
-import { users } from '@/database/schema/user.schema'
+import { users } from '@/database/schemas/user.schema'
 import { deleteRecords, selectRecords } from '@/database/utils/database.utils'
 import { DatabaseOptions } from '@/types/database.type'
 

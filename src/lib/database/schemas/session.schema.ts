@@ -1,9 +1,9 @@
 import { sql } from 'drizzle-orm'
 import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { UUID_V7_GENERATOR_FUNCTION } from '@/constants/database.constants'
-import { accounts } from '@/database/schema/account.schema'
-import { organizations } from '@/database/schema/organization.schema'
-import { users } from '@/database/schema/user.schema'
+import { accounts } from '@/database/schemas/account.schema'
+import { organizations } from '@/database/schemas/organization.schema'
+import { users } from '@/database/schemas/user.schema'
 
 const sessions = pgTable('sessions', {
   id: uuid('id').primaryKey().default(sql.raw(UUID_V7_GENERATOR_FUNCTION)),
