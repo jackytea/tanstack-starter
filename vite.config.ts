@@ -26,6 +26,17 @@ const config = defineConfig(({ mode }) => {
       tailwindCSS(),
       tanstackStart(),
       nitro({
+        minify: true,
+        sourcemap: false,
+        rollupConfig: {
+          cache: true,
+          treeshake: 'safest',
+          output: {
+            compact: true,
+            sourcemap: false,
+            minifyInternalExports: true
+          }
+        },
         prerender: {
           routes: ['/'],
           crawlLinks: true
