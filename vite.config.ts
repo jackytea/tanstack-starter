@@ -1,9 +1,26 @@
 import tailwindCSS from '@tailwindcss/vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
+import { RollupConfig } from 'nitro/types'
 import { nitro } from 'nitro/vite'
 import { defineConfig, loadEnv } from 'vite'
 import tsConfigPaths from 'vite-tsconfig-paths'
+
+const buildOptions = (rollupAttribute: 'rollupConfig' | 'rollupOptions') => {
+  return {
+    minify: true,
+    sourcemap: false,
+    [rollupAttribute]: {
+      cache: true,
+      treeshake: 'safest',
+      output: {
+        compact: true,
+        sourcemap: false,
+        minifyInternalExports: true
+      }
+    } satisfies RollupConfig
+  }
+}
 
 const config = defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -26,17 +43,7 @@ const config = defineConfig(({ mode }) => {
       tailwindCSS(),
       tanstackStart(),
       nitro({
-        minify: true,
-        sourcemap: false,
-        rollupConfig: {
-          cache: true,
-          treeshake: 'safest',
-          output: {
-            compact: true,
-            sourcemap: false,
-            minifyInternalExports: true
-          }
-        },
+        ...buildOptions('rollupConfig'),
         prerender: {
           routes: ['/'],
           crawlLinks: true
@@ -45,7 +52,8 @@ const config = defineConfig(({ mode }) => {
         preset: env.VITE_NITRO_PRESET
       }),
       viteReact()
-    ]
+    ],
+    build: buildOptions('rollupOptions')
   }
 })
 
