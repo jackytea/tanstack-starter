@@ -28,7 +28,7 @@ const LanguageSwitcher = () => {
     }
 
     i18n.changeLanguage(language)
-  }, [i18n.changeLanguage])
+  }, [i18n])
 
   return (
     <div className="flex cursor-pointer items-center justify-center">
