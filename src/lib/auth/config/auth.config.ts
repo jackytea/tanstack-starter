@@ -1,10 +1,11 @@
 import { createServerOnlyFn } from '@tanstack/react-start'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { betterAuth } from 'better-auth/minimal'
-import { customSession, organization } from 'better-auth/plugins'
+import { customSession } from 'better-auth/plugins'
 import { tanstackStartCookies } from 'better-auth/tanstack-start'
 import { sessionHook } from '@/auth/hooks/auth.hooks'
 import { database } from '@/database/config/database.config'
+import { sendEmail } from '@/lib/email/utils/email.utils'
 import type { AuthProviderWithEmail } from '@/types/auth.type'
 
 const auth = createServerOnlyFn(() =>
@@ -12,18 +13,12 @@ const auth = createServerOnlyFn(() =>
     baseURL: process.env.VITE_BASE_URL as string,
     plugins: [
       tanstackStartCookies(),
-      organization({
-        allowUserToCreateOrganization: async () => {
-          return false
-        }
-      }),
       customSession(async ({ user, session }) => {
         return {
           user,
           session: {
             ...session,
-            accountId: (session as typeof session & { accountId: string }).accountId,
-            activeOrganizationId: (session as typeof session & { activeOrganizationId: string }).activeOrganizationId
+            accountId: (session as typeof session & { accountId: string }).accountId
           }
         }
       })
@@ -33,6 +28,13 @@ const auth = createServerOnlyFn(() =>
       usePlural: true
     }),
     databaseHooks: {
+      user: {
+        create: {
+          after: async (user) => {
+            await sendEmail(process.env.RESEND_FROM_EMAIL as string, [user.email], user.name)
+          }
+        }
+      },
       session: {
         create: {
           before: async (session, context) => {
@@ -50,8 +52,8 @@ const auth = createServerOnlyFn(() =>
       }
     },
     emailAndPassword: {
-      enabled: false,
-      disableSignUp: true
+      enabled: true,
+      disableSignUp: false
     },
     user: {
       deleteUser: {
@@ -59,14 +61,6 @@ const auth = createServerOnlyFn(() =>
       },
       additionalFields: {
         description: {
-          type: 'string',
-          required: false
-        }
-      }
-    },
-    account: {
-      additionalFields: {
-        activeOrganizationId: {
           type: 'string',
           required: false
         }

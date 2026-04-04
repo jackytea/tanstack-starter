@@ -1,6 +1,5 @@
 const QUERY_KEYS = {
-  AUTH: 'auth',
-  ORGANIZATIONS: 'organizations'
+  AUTH: 'auth'
 } as const
 
 export { QUERY_KEYS }

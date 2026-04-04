@@ -1,29 +1,10 @@
-import { and, eq, not } from 'drizzle-orm'
-import { deleteAccounts, selectAccounts, updateAccounts } from '@/database/providers/accounts.provider'
+import { eq } from 'drizzle-orm'
+import { deleteAccounts, selectAccounts } from '@/database/providers/accounts.provider'
 import { accounts } from '@/database/schemas/account.schema'
-import { organizations } from '@/database/schemas/organization.schema'
 import { users } from '@/database/schemas/user.schema'
-import type { AccountPayload } from '@/types/account.type'
 import { firstElement } from '@/utils/array.utils'
-import { handleErrorWithArray, handleErrorWithNull } from '@/utils/function.utils'
+import { handleErrorWithNull } from '@/utils/function.utils'
 import { deleteUsers } from '../database/providers/users.provider'
-
-const getAccountsController = async (id: string) => {
-  return handleErrorWithArray(() =>
-    selectAccounts(
-      {
-        id: accounts.id,
-        name: accounts.name,
-        image: accounts.image,
-        userId: accounts.userId,
-        description: accounts.description
-      },
-      {
-        where: not(eq(accounts.id, id))
-      }
-    )
-  )
-}
 
 const getAccountController = async (id: string) => {
   return handleErrorWithNull(() =>
@@ -32,36 +13,10 @@ const getAccountController = async (id: string) => {
         id: accounts.id,
         name: accounts.name,
         image: accounts.image,
-        description: accounts.description,
-        organization: {
-          id: organizations.id,
-          name: organizations.name,
-          slug: organizations.slug,
-          logo: organizations.logo
-        }
+        description: accounts.description
       },
       {
         where: eq(accounts.id, id)
-      }
-    )
-      .leftJoin(organizations, eq(accounts.activeOrganizationId, organizations.id))
-      .then(firstElement)
-  )
-}
-
-const updateAccountController = async (
-  id: string,
-  userId: string,
-  accountPayload: Omit<Partial<AccountPayload>, 'userId' | 'id'>
-) => {
-  return handleErrorWithNull(() =>
-    updateAccounts(
-      accountPayload,
-      {
-        where: and(eq(accounts.id, id), eq(accounts.userId, userId))
-      },
-      {
-        id: accounts.id
       }
     ).then(firstElement)
   )
@@ -91,4 +46,4 @@ const deleteAccountController = async (id: string, userId: string) => {
   })
 }
 
-export { deleteAccountController, getAccountController, getAccountsController, updateAccountController }
+export { deleteAccountController, getAccountController }

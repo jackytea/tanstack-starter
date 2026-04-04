@@ -25,14 +25,6 @@ const selectRecords = <Select extends SelectedFields, Table extends TableConfig>
   })(database.select(select).from(table))
 }
 
-const insertRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends TableConfig>(
-  table: PgTable<Table>,
-  data: InferInsertModel<PgTable<Table>>[],
-  returnedFields: ReturnedFields = {} as ReturnedFields
-) => {
-  return database.insert(table).values(data).returning(returnedFields)
-}
-
 const updateRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends TableConfig>(
   table: PgTable<Table>,
   data: Partial<InferInsertModel<PgTable<Table>>>,
@@ -50,4 +42,4 @@ const deleteRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends 
   return database.delete(table).where(options.where).returning(returnedFields)
 }
 
-export { deleteRecords, insertRecords, selectRecords, updateRecords }
+export { deleteRecords, selectRecords, updateRecords }

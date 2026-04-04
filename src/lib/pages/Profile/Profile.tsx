@@ -1,4 +1,3 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
 import { useRouter } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { X } from 'lucide-react'
@@ -6,16 +5,13 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { logoutSession } from '@/auth/utils/auth.utils'
 import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
-import { QUERY_KEYS } from '@/constants/query.constants'
 import { AppLayout } from '@/layouts/AppLayout/AppLayout'
 import { Route as RootRoute } from '@/routes/__root'
-import { deleteAccount, updateAccount } from '@/services/accounts.service'
-import { getOrganizations } from '@/services/organizations.service'
+import { deleteAccount } from '@/services/accounts.service'
 import { AccountWithImage } from '@/types/account.provider.type'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { Button } from '@/ui/button'
 import { Card, CardContent, CardHeader } from '@/ui/card'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/ui/select'
 
 const Profile = ({ account }: { account: AccountWithImage | null }) => {
   const router = useRouter()
@@ -23,27 +19,6 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
   const { queryClient } = RootRoute.useRouteContext()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const deleteAccountServerFn = useServerFn(deleteAccount)
-  const updateAccountsServerFn = useServerFn(updateAccount)
-  const getOrganizationsServerFn = useServerFn(getOrganizations)
-  const [organizationSelectValue, setOrganizationSelectValue] = useState<string>(account?.organization?.id ?? '')
-
-  const { data: organizations = [] } = useQuery({
-    queryFn: () => getOrganizationsServerFn(),
-    queryKey: [QUERY_KEYS.ORGANIZATIONS]
-  })
-
-  const updateAccountsMutation = useMutation({
-    mutationFn: async (activeOrganizationId: string) => {
-      return updateAccountsServerFn({
-        data: {
-          activeOrganizationId
-        }
-      })
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ORGANIZATIONS] })
-    }
-  })
 
   const handleDeleteAccount = async () => {
     try {
@@ -65,7 +40,7 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
     <AppLayout>
       <div className="flex h-full w-full flex-col items-center justify-center">
         {account ? (
-          <Card className="h-100">
+          <Card>
             {isLoading ? (
               <div className="w-full">
                 <LoadingSpinner className="h-12 w-12 animate-spin" />
@@ -95,26 +70,6 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
                       {t('Delete Account')}
                     </Button>
                   </div>
-                  <Select
-                    value={organizationSelectValue}
-                    onValueChange={(value) => {
-                      setOrganizationSelectValue(value)
-                      updateAccountsMutation.mutate(value)
-                    }}
-                  >
-                    <SelectTrigger className="mt-3 cursor-pointer">
-                      <SelectValue placeholder="Select An Organization" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {organizations.map((organization) => (
-                          <SelectItem key={organization.id} value={organization.id}>
-                            {organization.name}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
                 </CardContent>
               </>
             )}

@@ -2,7 +2,6 @@ import { sql } from 'drizzle-orm'
 import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { UUID_V7_GENERATOR_FUNCTION } from '@/constants/database.constants'
 import { accounts } from '@/database/schemas/account.schema'
-import { organizations } from '@/database/schemas/organization.schema'
 import { users } from '@/database/schemas/user.schema'
 
 const sessions = pgTable('sessions', {
@@ -18,11 +17,7 @@ const sessions = pgTable('sessions', {
   userId: uuid('user_id')
     .notNull()
     .references(() => users.id, { onUpdate: 'cascade', onDelete: 'cascade' }),
-  accountId: uuid('account_id').references(() => accounts.id, { onUpdate: 'cascade', onDelete: 'cascade' }),
-  activeOrganizationId: uuid('active_organization_id').references(() => organizations.id, {
-    onUpdate: 'cascade',
-    onDelete: 'cascade'
-  })
+  accountId: uuid('account_id').references(() => accounts.id, { onUpdate: 'cascade', onDelete: 'cascade' })
 })
 
 export { sessions }

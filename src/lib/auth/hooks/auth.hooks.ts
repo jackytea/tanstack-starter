@@ -12,8 +12,7 @@ const sessionHook = async (session: Session, providerId: AuthProviderWithEmail) 
       id: accounts.id,
       userName: users.name,
       userImage: users.image,
-      userDescription: users.description,
-      activeOrganizationId: accounts.activeOrganizationId
+      userDescription: users.description
     },
     {
       where: and(eq(accounts.userId, session.userId), eq(accounts.providerId, providerId))
@@ -30,8 +29,7 @@ const sessionHook = async (session: Session, providerId: AuthProviderWithEmail) 
     {
       name: currentAccount.userName,
       image: currentAccount.userImage,
-      description: currentAccount.userDescription,
-      activeOrganizationId: currentAccount.activeOrganizationId
+      description: currentAccount.userDescription
     },
     {
       where: and(eq(accounts.id, currentAccount.id), eq(accounts.userId, session.userId))
@@ -44,8 +42,7 @@ const sessionHook = async (session: Session, providerId: AuthProviderWithEmail) 
   return {
     data: {
       ...session,
-      accountId: currentAccount.id,
-      activeOrganizationId: currentAccount.activeOrganizationId
+      accountId: currentAccount.id
     }
   }
 }
