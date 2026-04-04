@@ -33,7 +33,7 @@ For specific development commands, refer to one of the following documents:
 
 **Better Auth Organization Support**
 
-> See [this issue](/issues/1) for details on implementing [organizations](https://better-auth.com/docs/plugins/organization).
+> See [this issue](https://github.com/jackytea/tanstack-starter/issues/1) for details on implementing [organizations](https://better-auth.com/docs/plugins/organization).
 Going forward, this feature will be removed as this template is focused on generic use cases.
 ---
 
