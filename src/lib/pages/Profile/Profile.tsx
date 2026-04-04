@@ -63,8 +63,8 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
                   <div className="grid w-full text-center">
                     <p className="mb-4 font-extrabold text-2xl">{account.name ?? ''}</p>
                     <Button
+                      variant="destructive"
                       onClick={handleDeleteAccount}
-                      variant="outline"
                       className="cursor-pointer border-red-500 text-red-500"
                     >
                       {t('Delete Account')}
