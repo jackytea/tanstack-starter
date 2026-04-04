@@ -5,8 +5,6 @@ import englishTranslations from '@/translations/en.json'
 import frenchTranslations from '@/translations/fr.json'
 import chineseTranslations from '@/translations/zh.json'
 
-const defaultNameSpace = 'translation'
-
 const resources = {
   [LANGUAGES.ENGLISH]: englishTranslations,
   [LANGUAGES.FRENCH]: frenchTranslations,
@@ -26,5 +24,3 @@ i18n.use(initReactI18next).init({
   fallbackLng: LANGUAGES.ENGLISH,
   supportedLngs: Object.values(LANGUAGES)
 })
-
-export { i18n as default, defaultNameSpace }

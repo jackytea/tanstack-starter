@@ -1,5 +1,4 @@
 {
-  "files.eol": "\n",
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true,
     "**/.tanstack/**/*": true,
@@ -11,8 +10,7 @@
     ".output": true,
     ".nitro": true,
     "build": true,
-    "dist": true,
-    ".env": true
+    "dist": true
   },
   "files.watcherExclude": {
     "**/routeTree.gen.ts": true,
@@ -42,6 +40,7 @@
     "dist": true,
     ".env": true
   },
+  "files.eol": "\n",
   "biome.enabled": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -49,7 +48,6 @@
     "source.organizeImports": "always"
   },
   "editor.defaultFormatter": "biomejs.biome",
-  "typescript.tsdk": "./node_modules/typescript/lib",
   "[json][jsonc][typescript][typescriptreact][javascript][javascriptreact][html][css]": {
     "editor.defaultFormatter": "biomejs.biome"
   }

@@ -33,7 +33,7 @@ const LanguageSwitcher = () => {
   return (
     <div className="flex cursor-pointer items-center justify-center">
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button variant="ghost" size="icon" className="size-6 cursor-pointer">
             {languageOptions[i18n.language ?? LANGUAGES.ENGLISH].flag}
             <span className="sr-only">Toggle language menu</span>

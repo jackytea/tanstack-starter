@@ -29,6 +29,14 @@ For specific development commands, refer to one of the following documents:
 - [`deno`](./docs/commands/deno.md)
 - [`docker`](./docs/commands/docker.md)
 
+---
+
+**Better Auth Organization Support**
+
+> See [this issue](/issues/1) for details on implementing [organizations](https://better-auth.com/docs/plugins/organization).
+Going forward, this feature will be removed as this template is focused on generic use cases.
+---
+
 ## Screenshots
 
 **Home Page (Dark Theme)**

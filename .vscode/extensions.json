@@ -3,11 +3,7 @@
     "biomejs.biome",
     "csstools.postcss",
     "redhat.vscode-yaml",
-    "dotenv.dotenv-vscode",
     "bradlc.vscode-tailwindcss",
-    "editorconfig.editorconfig",
-    "ms-azuretools.vscode-docker",
-    "github.vscode-github-actions",
-    "ms-azuretools.vscode-containers"
+    "editorconfig.editorconfig"
   ]
 }

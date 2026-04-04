@@ -41,7 +41,7 @@ const NavBar = () => {
             <ThemeToggle />
             {user ? (
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+                <DropdownMenuTrigger>
                   <Button variant="secondary" size="icon" className="ml-3 cursor-pointer rounded-full">
                     <Avatar
                       key={user?.id}

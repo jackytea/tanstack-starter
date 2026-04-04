@@ -1,7 +1,5 @@
-import { getAccountController, getAccountsController } from '@/controllers/accounts.controller'
-import type { ArrayElement } from '@/types/array.type'
+import { getAccountController } from '@/controllers/accounts.controller'
 
 type AccountWithImage = Awaited<Promise<ReturnType<typeof getAccountController>>>
-type AccountWithUser = ArrayElement<Awaited<Promise<ReturnType<typeof getAccountsController>>>>
 
-export type { AccountWithImage, AccountWithUser }
+export type { AccountWithImage }

@@ -19,4 +19,4 @@ const toggleTheme = () => {
 const rootThemeScript =
   `document.documentElement.classList.toggle('${THEMES.DARK}', localStorage.theme === '${THEMES.DARK}' || (!('${themeKey}' in localStorage) && window.matchMedia('(prefers-color-scheme: ${THEMES.DARK})').matches))` as const
 
-export { rootThemeScript, themeKey, toggleTheme }
+export { rootThemeScript, toggleTheme }

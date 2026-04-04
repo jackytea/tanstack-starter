@@ -1,7 +1,7 @@
 import { config as dotEnvConfig } from 'dotenv'
 import type { Config } from 'drizzle-kit'
 import { defineConfig } from 'drizzle-kit'
-import { ENVIRONMENTS } from '@/constants/env.constants'
+import { ENVIRONMENTS } from './src/lib/constants/env.constants'
 
 dotEnvConfig({ quiet: true })
 

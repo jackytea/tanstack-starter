@@ -4,17 +4,14 @@ import viteReact from '@vitejs/plugin-react'
 import { RollupConfig } from 'nitro/types'
 import { nitro } from 'nitro/vite'
 import { defineConfig, loadEnv } from 'vite'
-import tsConfigPaths from 'vite-tsconfig-paths'
 
 const buildOptions = (rollupAttribute: 'rollupConfig' | 'rollupOptions') => {
   return {
     minify: true,
     sourcemap: false,
     [rollupAttribute]: {
-      cache: true,
-      treeshake: 'safest',
+      treeshake: true,
       output: {
-        compact: true,
         sourcemap: false,
         minifyInternalExports: true
       }
@@ -26,6 +23,9 @@ const config = defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
 
   return {
+    resolve: {
+      tsconfigPaths: true
+    },
     server: {
       host: true,
       open: true,
@@ -37,9 +37,6 @@ const config = defineConfig(({ mode }) => {
       port: parseInt(env.VITE_APP_PORT, 10)
     },
     plugins: [
-      tsConfigPaths({
-        projects: ['./tsconfig.json']
-      }),
       tailwindCSS(),
       tanstackStart(),
       nitro({
