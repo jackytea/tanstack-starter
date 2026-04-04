@@ -53,6 +53,9 @@ deno run -A npm:eclint fix .
 # update major latest (alt: ncu -u)
 deno run -A npm:npm-check-updates -u
 
+# visualize vite bundle size
+deno run -A npm:vite-bundle-visualizer
+
 # migrate biome configuration
 deno run -A npm:@biomejs/biome migrate --write
 

@@ -64,6 +64,9 @@ npx npm-check-updates -u
 # install dependencies for modules
 npm ci
 
+# visualize vite bundle size
+npx vite-bundle-visualizer
+
 # ignore arbitrary script executions
 npm config set ignore-scripts true
 

@@ -67,6 +67,9 @@ pnpm dlx npm-check-updates -u
 # install dependencies for modules
 pnpm install --frozen-lockfile
 
+# visualize vite bundle size
+pnpm dlx vite-bundle-visualizer
+
 # ignore arbitrary script executions
 pnpm config set ignore-scripts true
 

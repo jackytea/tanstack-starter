@@ -61,6 +61,9 @@ bunx eclint fix .
 # update major latest (alt: ncu -u)
 bunx npm-check-updates -u
 
+# visualize vite bundle size
+bunx vite-bundle-visualizer
+
 # install dependencies for modules
 bun install --frozen-lockfile
 
