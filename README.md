@@ -2,9 +2,7 @@
 
 ## Overview
 
-Full-stack starter template for [`tanstack-start`](https://tanstack.com/start/latest), batteries included.
-
-Inspired by [`dotnize/react-tanstarter`](https://github.com/dotnize/react-tanstarter).
+Full-stack starter template for [`TanStack Start`](https://tanstack.com/start/latest) with batteries included: authentication, database, localization, UI components, and SSR. View the live demo at [tanstack-starter.dev](https://tanstack-starter.dev/). This template is designed to skip the boilerplate of starting a new project.
 
 This template includes the following:
 
@@ -13,15 +11,13 @@ This template includes the following:
 - [`better-auth`](https://www.better-auth.com/)
 - [`shadcn/ui`](https://ui.shadcn.com/)
 - [`i18next`](https://react.i18next.com/)
+- [`resend`](https://resend.com/)
 - [`nitro`](https://nitro.build/)
+- [`vite`](https://vite.dev/)
 
 ## Development
 
-To get up to speed, see the [`quick-start`](./docs/development/quick-start.md) guide.
-
-This project uses [`pnpm`](https://www.npmjs.com/package/pnpm) but you can use the package manager of your choice!
-
-For specific development commands, refer to one of the following documents:
+To get started, see the [`quick-start`](./docs/development/quick-start.md) guide. This project uses [`pnpm`](https://www.npmjs.com/package/pnpm), though any package manager will work. For specific development commands, refer to one of the following:
 
 - [`npm`](./docs/commands/npm.md)
 - [`bun`](./docs/commands/bun.md)
@@ -34,7 +30,8 @@ For specific development commands, refer to one of the following documents:
 **Better Auth Organization Support**
 
 > See [this issue](https://github.com/jackytea/tanstack-starter/issues/1) for details on implementing [organizations](https://better-auth.com/docs/plugins/organization).
-Going forward, this feature will be removed as this template is focused on generic use cases.
+This feature has been removed in this [`commit`](https://github.com/jackytea/tanstack-starter/commit/ea88170cbfe7c15083bce5484baa3ece2992e877), as this template is focused on generic use cases.
+
 ---
 
 ## Screenshots
@@ -61,5 +58,5 @@ Going forward, this feature will be removed as this template is focused on gener
 
 ## References
 
-- [`tanstack/router`](https://github.com/TanStack/router)
-- [`dotnize/react-tanstarter`](https://github.com/dotnize/react-tanstarter)
+- [`TanStack/router`](https://github.com/TanStack/router)
+- [`mugnavo/tanstarter`](https://github.com/mugnavo/tanstarter)
