@@ -13,7 +13,7 @@ const ProfilePage = () => {
   return <Profile account={account} />
 }
 
-export const Route = createFileRoute(ROUTES.PROFILE)({
+export const Route = createFileRoute('/profile')({
   head: () => ({
     meta: [{ title: `${APP.NAME} | Profile` }]
   }),

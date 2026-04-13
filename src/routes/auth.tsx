@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { APP } from '@/constants/app.constants'
 import { PAGE } from '@/constants/page.constants'
-import { ROUTES } from '@/constants/route.constants'
 import { Auth } from '@/pages/Auth/Auth'
 import { LoadingScreen } from '@/pages/LoadingScreen/LoadingScreen'
 
@@ -10,7 +9,7 @@ const AuthPage = () => {
   return <Auth />
 }
 
-export const Route = createFileRoute(ROUTES.AUTH)({
+export const Route = createFileRoute('/auth')({
   head: () => ({
     meta: [{ title: `${APP.NAME} | Login` }]
   }),
