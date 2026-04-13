@@ -5,14 +5,13 @@
     "ignoreUnknown": false,
     "includes": [
       "**",
-      "!**/node_modules",
       "!**/build",
       "!**/dist",
-      "!**/.tanstack",
       "!**/.nitro",
       "!**/.output",
       "!**/.vercel",
       "!**/.tanstack",
+      "!**/node_modules",
       "!**/routeTree.gen.ts"
     ]
   },
@@ -28,14 +27,13 @@
     "bracketSpacing": true,
     "includes": [
       "**",
-      "!**/node_modules",
       "!**/build",
       "!**/dist",
-      "!**/.tanstack",
       "!**/.nitro",
       "!**/.output",
       "!**/.vercel",
       "!**/.tanstack",
+      "!**/node_modules",
       "!**/routeTree.gen.ts"
     ]
   },
@@ -144,14 +142,13 @@
     },
     "includes": [
       "**",
-      "!**/node_modules",
       "!**/build",
       "!**/dist",
-      "!**/.tanstack",
       "!**/.nitro",
       "!**/.output",
       "!**/.vercel",
       "!**/.tanstack",
+      "!**/node_modules",
       "!**/routeTree.gen.ts"
     ]
   },
