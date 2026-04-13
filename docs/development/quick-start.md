@@ -11,54 +11,7 @@ Ensure you have one of the following programs installed on your machine:
 
 ### **2. Environment**
 
-Ensure you have these values populated in your `.env` file:
-
-```bash
-# app config - see https://nitro.build/config and https://vite.dev/config/
-APP_PORT=
-APP_HOST=
-NITRO_PORT=
-VITE_APP_PORT=
-VITE_BASE_URL=
-VITE_NITRO_PRESET=
-VITE_COOKIE_EXPIRY_DATE=
-
-# footer config - add values for the social media links you want to have in the footer
-VITE_FOOTER_GITHUB_URL=
-VITE_FOOTER_TWITTER_URL=
-VITE_FOOTER_LINKEDIN_URL=
-
-# database credentials - see https://hub.docker.com/_/postgres#environment-variables
-DATABASE_URL=
-DATABASE_NAME=
-DATABASE_USER=
-DATABASE_PORT=
-DATABASE_HOST=
-DATABASE_SCHEMA=
-DATABASE_PASSWORD=
-
-# auth config - see https://www.better-auth.com/docs/installation
-BETTER_AUTH_URL=
-BETTER_AUTH_SECRET=
-BETTER_AUTH_JWT_SECRET=
-
-# email config - see https://resend.com/docs/send-with-nodejs
-RESEND_API_KEY=
-RESEND_FROM_EMAIL=
-RESEND_TEMPLATE_ID=
-
-# discord oauth - see https://www.better-auth.com/docs/authentication/discord
-DISCORD_CLIENT_ID=
-DISCORD_CLIENT_SECRET=
-
-# google oauth - see https://www.better-auth.com/docs/authentication/google
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-
-# github oauth - see https://www.better-auth.com/docs/authentication/github
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-```
+Ensure you have your `.env` file configured, refer to the [`.env.example`](../../.env.example) for reference:
 
 ## **3. Database**
 
