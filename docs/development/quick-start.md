@@ -23,6 +23,11 @@ VITE_BASE_URL=
 VITE_NITRO_PRESET=
 VITE_COOKIE_EXPIRY_DATE=
 
+# footer config - add values for the social media links you want to have in the footer
+VITE_FOOTER_GITHUB_URL=
+VITE_FOOTER_TWITTER_URL=
+VITE_FOOTER_LINKEDIN_URL=
+
 # database credentials - see https://hub.docker.com/_/postgres#environment-variables
 DATABASE_URL=
 DATABASE_NAME=
@@ -36,6 +41,11 @@ DATABASE_PASSWORD=
 BETTER_AUTH_URL=
 BETTER_AUTH_SECRET=
 BETTER_AUTH_JWT_SECRET=
+
+# email config - see https://resend.com/docs/send-with-nodejs
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
+RESEND_TEMPLATE_ID=
 
 # discord oauth - see https://www.better-auth.com/docs/authentication/discord
 DISCORD_CLIENT_ID=
