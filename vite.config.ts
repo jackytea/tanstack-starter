@@ -1,3 +1,4 @@
+import { paraglideVitePlugin } from '@inlang/paraglide-js'
 import tailwindCSS from '@tailwindcss/vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
@@ -39,6 +40,13 @@ const config = defineConfig(({ mode }) => {
       port: parseInt(env.VITE_APP_PORT, 10)
     },
     plugins: [
+      paraglideVitePlugin({
+        project: './src/lib/i18n/config',
+        outdir: './src/lib/i18n/compiled',
+        outputStructure: 'message-modules',
+        cookieName: env.VITE_LOCALE_COOKIE,
+        strategy: ['cookie', 'preferredLanguage', 'baseLocale']
+      }),
       tailwindCSS(),
       tanstackStart(),
       nitro({

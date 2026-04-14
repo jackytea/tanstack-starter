@@ -1,10 +1,10 @@
 import { QueryClient } from '@tanstack/react-query'
 import { createRootRouteWithContext, HeadContent, Outlet, ScriptOnce, Scripts } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 import { rootThemeScript } from '@/components/ThemeToggle/ThemeToggle.utils'
 import { APP } from '@/constants/app.constants'
 import { QUERY_KEYS } from '@/constants/query.constants'
+import { getLocale } from '@/i18n/compiled/runtime'
 import { ErrorBoundary } from '@/pages/ErrorBoundary/ErrorBoundary'
 import { NotFound } from '@/pages/NotFound/NotFound'
 import { getCurrentSession } from '@/services/auth.service'
@@ -12,10 +12,8 @@ import appCss from '@/styles/index.css?url'
 import { UserWithAccount } from '@/types/user.type'
 
 const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
-  const { i18n } = useTranslation()
-
   return (
-    <html lang={i18n.language} suppressHydrationWarning suppressContentEditableWarning>
+    <html lang={getLocale()} suppressHydrationWarning suppressContentEditableWarning>
       <head>
         <HeadContent />
       </head>

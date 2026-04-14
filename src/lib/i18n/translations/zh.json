@@ -1,0 +1,17 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "application": "应用",
+  "hello": "你好!",
+  "welcome": "欢迎，{username}!",
+  "welcomeTo": "欢迎使用 {appName}!",
+  "loginWith": "使用 {authProvider} 登录。",
+  "youAreLoggedIn": "您已登录.",
+  "signOut": "退出登录",
+  "loginToGetStarted": "登录以开始使用!",
+  "deleteAccount": "删除账户",
+  "accountNotFound": "账户未找到",
+  "notFound": "未找到",
+  "anErrorOccurred": "发生错误",
+  "home": "主页",
+  "profile": "个人资料"
+}

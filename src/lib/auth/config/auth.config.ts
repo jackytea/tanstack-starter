@@ -5,7 +5,7 @@ import { customSession } from 'better-auth/plugins'
 import { tanstackStartCookies } from 'better-auth/tanstack-start'
 import { sessionHook } from '@/auth/hooks/auth.hooks'
 import { database } from '@/database/config/database.config'
-import { sendEmail } from '@/lib/email/utils/email.utils'
+import { sendEmail } from '@/email/utils/email.utils'
 import type { AuthProviderWithEmail } from '@/types/auth.type'
 
 const auth = createServerOnlyFn(() =>

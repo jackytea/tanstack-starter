@@ -1,9 +1,5 @@
-import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { langKey, languageOptions } from '@/components/LanguageSwitcher/LanguageSwitcher.utils'
-import { LANGUAGES } from '@/constants/lang.constants'
-import { Language } from '@/types/language.type'
-import { Button } from '@/ui/button'
+import { languageOptions } from '@/components/LanguageSwitcher/LanguageSwitcher.utils'
+import { getLocale, setLocale } from '@/i18n/compiled/runtime'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,38 +9,21 @@ import {
 } from '@/ui/dropdown-menu'
 
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation()
-
-  const toggleLanguage = (language: Language) => {
-    i18n.changeLanguage(language)
-    localStorage.setItem(langKey, language)
-  }
-
-  useEffect(() => {
-    const language = localStorage.getItem(langKey)
-
-    if (!language) {
-      return
-    }
-
-    i18n.changeLanguage(language)
-  }, [i18n])
-
   return (
     <div className="flex cursor-pointer items-center justify-center">
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <Button variant="ghost" size="icon" className="size-6 cursor-pointer">
-            {languageOptions[i18n.language ?? LANGUAGES.ENGLISH].flag}
+          <div className="mt-1.5 mr-0.5 size-5 cursor-pointer">
+            {languageOptions[getLocale()].flag}
             <span className="sr-only">Toggle language menu</span>
-          </Button>
+          </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           {Object.keys(languageOptions).map((languageOptionKey) => (
             <DropdownMenuItem
               className="cursor-pointer"
               key={languageOptions[languageOptionKey].language}
-              onClick={() => toggleLanguage(languageOptions[languageOptionKey].language)}
+              onClick={() => setLocale(languageOptions[languageOptionKey].language)}
             >
               {languageOptions[languageOptionKey].name}
               <DropdownMenuShortcut className="h-4 w-4">{languageOptions[languageOptionKey].flag}</DropdownMenuShortcut>

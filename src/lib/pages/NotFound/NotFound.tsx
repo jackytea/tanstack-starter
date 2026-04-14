@@ -1,12 +1,10 @@
-import { useTranslation } from 'react-i18next'
+import { m as localize } from '@/i18n/compiled/messages'
 import { AppLayout } from '@/layouts/AppLayout/AppLayout'
 
 const NotFound = () => {
-  const { t } = useTranslation()
-
   return (
     <AppLayout>
-      <div className="flex h-full w-full items-center justify-center">{t('Not Found')}</div>
+      <div className="flex h-full w-full items-center justify-center">{localize.notFound()}</div>
     </AppLayout>
   )
 }

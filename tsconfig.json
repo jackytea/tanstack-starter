@@ -2,6 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "strict": true,
+    "allowJs": true,
     "jsx": "react-jsx",
     "module": "ESNext",
     "target": "ES2022",
@@ -23,6 +24,7 @@
       "@/controllers/*": ["./src/lib/controllers/*"],
       "@/database/*": ["./src/lib/database/*"],
       "@/email/*": ["./src/lib/email/*"],
+      "@/i18n/*": ["./src/lib/i18n/*"],
       "@/layouts/*": ["./src/lib/layouts/*"],
       "@/middleware/*": ["./src/lib/middleware/*"],
       "@/pages/*": ["./src/lib/pages/*"],

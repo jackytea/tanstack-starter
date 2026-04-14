@@ -1,5 +1,4 @@
 import type { JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 import { APP } from '@/constants/app.constants'
 import packageJson from '@/package'
 
@@ -67,15 +66,13 @@ const icons: {
 ]
 
 const Footer = () => {
-  const { t } = useTranslation()
-
   return (
     <div className="relative">
       <hr className="absolute w-full border-gray-200 dark:border-stone-800" />
       <footer className="container bg-white dark:bg-stone-950">
         <div className="flex items-center justify-between gap-y-10 border-gray-200 border-x px-4 py-6 dark:border-stone-800">
           <p className="font-semibold text-neutral-500 text-sm tracking-tight sm:text-center dark:text-neutral-400">
-            &copy; {new Date().getFullYear()}, {t(APP.NAME)} {packageJson.version}
+            &copy; {new Date().getFullYear()}, {APP.NAME} {packageJson.version}
           </p>
           <div className="flex items-center gap-x-4">
             {icons.map((icon, index) => (

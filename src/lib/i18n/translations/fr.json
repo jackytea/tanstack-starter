@@ -1,0 +1,17 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "application": "Application",
+  "hello": "Bonjour!",
+  "welcome": "Bienvenue, {username}!",
+  "welcomeTo": "Bienvenue sur {appName}!",
+  "loginWith": "Connectez-vous avec {authProvider}.",
+  "youAreLoggedIn": "Vous êtes connecté.",
+  "signOut": "Se déconnecter",
+  "loginToGetStarted": "Connectez-vous pour commencer!",
+  "deleteAccount": "Supprimer le compte",
+  "accountNotFound": "Compte introuvable",
+  "notFound": "Introuvable",
+  "anErrorOccurred": "Une erreur s'est produite",
+  "home": "Accueil",
+  "profile": "Profil"
+}

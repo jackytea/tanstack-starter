@@ -7,8 +7,8 @@ const langKey = 'lang' as const
 const languageOptions: {
   [x: string]: {
     name: string
-    language: Language
     flag: ReactNode
+    language: Language
   }
 } = {
   [LANGUAGES.ENGLISH]: {

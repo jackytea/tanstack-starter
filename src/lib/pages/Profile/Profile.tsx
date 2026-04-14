@@ -2,9 +2,9 @@ import { useRouter } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { X } from 'lucide-react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { logoutSession } from '@/auth/utils/auth.utils'
 import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
+import { m as localize } from '@/i18n/compiled/messages'
 import { AppLayout } from '@/layouts/AppLayout/AppLayout'
 import { Route as RootRoute } from '@/routes/__root'
 import { deleteAccount } from '@/services/accounts.service'
@@ -15,7 +15,6 @@ import { Card, CardContent, CardHeader } from '@/ui/card'
 
 const Profile = ({ account }: { account: AccountWithImage | null }) => {
   const router = useRouter()
-  const { t } = useTranslation()
   const { queryClient } = RootRoute.useRouteContext()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const deleteAccountServerFn = useServerFn(deleteAccount)
@@ -67,7 +66,7 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
                       onClick={handleDeleteAccount}
                       className="cursor-pointer border-red-500 text-red-500"
                     >
-                      {t('Delete Account')}
+                      {localize.deleteAccount()}
                     </Button>
                   </div>
                 </CardContent>
@@ -77,7 +76,7 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
         ) : (
           <>
             <X className="h-32 w-32 text-red-500" />
-            <p className="text-lg">{t('Account Not Found')}</p>
+            <p className="text-lg">{localize.accountNotFound()}</p>
           </>
         )}
       </div>

@@ -3,7 +3,8 @@
     "biomejs.biome",
     "csstools.postcss",
     "redhat.vscode-yaml",
-    "bradlc.vscode-tailwindcss",
-    "editorconfig.editorconfig"
+    "inlang.vs-code-extension",
+    "editorconfig.editorconfig",
+    "bradlc.vscode-tailwindcss"
   ]
 }

@@ -1,6 +1,10 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
-  "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
+  "$schema": "https://biomejs.dev/schemas/2.4.12/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
   "files": {
     "ignoreUnknown": false,
     "includes": [
@@ -12,7 +16,10 @@
       "!**/.vercel",
       "!**/.tanstack",
       "!**/node_modules",
-      "!**/routeTree.gen.ts"
+      "!**/lib/i18n/config",
+      "!**/routeTree.gen.ts",
+      "!**/lib/i18n/compiled",
+      "lib/i18n/config/settings.json"
     ]
   },
   "formatter": {
@@ -34,7 +41,10 @@
       "!**/.vercel",
       "!**/.tanstack",
       "!**/node_modules",
-      "!**/routeTree.gen.ts"
+      "!**/lib/i18n/config",
+      "!**/routeTree.gen.ts",
+      "!**/lib/i18n/compiled",
+      "lib/i18n/config/settings.json"
     ]
   },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
@@ -149,7 +159,10 @@
       "!**/.vercel",
       "!**/.tanstack",
       "!**/node_modules",
-      "!**/routeTree.gen.ts"
+      "!**/lib/i18n/config",
+      "!**/routeTree.gen.ts",
+      "!**/lib/i18n/compiled",
+      "lib/i18n/config/settings.json"
     ]
   },
   "javascript": {
