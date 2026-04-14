@@ -1,4 +1,5 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignore": ["src/lib/i18n/**", "src/server.ts", "node_modules/**", ".output/**", "build/**", "dist/**"],
   "tags": ["-lintignore"]
 }

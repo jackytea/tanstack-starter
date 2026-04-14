@@ -16,9 +16,9 @@
       "!**/.vercel",
       "!**/.tanstack",
       "!**/node_modules",
-      "!**/lib/i18n/config",
       "!**/routeTree.gen.ts",
       "!**/lib/i18n/compiled",
+      "!**/lib/i18n/config.inlang",
       "lib/i18n/config/settings.json"
     ]
   },
@@ -41,9 +41,9 @@
       "!**/.vercel",
       "!**/.tanstack",
       "!**/node_modules",
-      "!**/lib/i18n/config",
       "!**/routeTree.gen.ts",
       "!**/lib/i18n/compiled",
+      "!**/lib/i18n/config.inlang",
       "lib/i18n/config/settings.json"
     ]
   },
@@ -159,9 +159,9 @@
       "!**/.vercel",
       "!**/.tanstack",
       "!**/node_modules",
-      "!**/lib/i18n/config",
       "!**/routeTree.gen.ts",
       "!**/lib/i18n/compiled",
+      "!**/lib/i18n/config.inlang",
       "lib/i18n/config/settings.json"
     ]
   },

@@ -2,8 +2,6 @@ import { ReactNode } from 'react'
 import { LANGUAGES } from '@/constants/lang.constants'
 import { Language } from '@/types/language.type'
 
-const langKey = 'lang' as const
-
 const languageOptions: {
   [x: string]: {
     name: string
@@ -72,4 +70,4 @@ const languageOptions: {
   }
 }
 
-export { langKey, languageOptions }
+export { languageOptions }

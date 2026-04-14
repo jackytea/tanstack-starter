@@ -41,10 +41,10 @@ const config = defineConfig(({ mode }) => {
     },
     plugins: [
       paraglideVitePlugin({
-        project: './src/lib/i18n/config',
         outdir: './src/lib/i18n/compiled',
         outputStructure: 'message-modules',
         cookieName: env.VITE_LOCALE_COOKIE,
+        project: './src/lib/i18n/config.inlang',
         strategy: ['cookie', 'preferredLanguage', 'baseLocale']
       }),
       tailwindCSS(),
