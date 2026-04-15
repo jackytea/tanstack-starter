@@ -2,18 +2,18 @@
 
 ## Overview
 
-Full-stack starter template for [`TanStack Start`](https://tanstack.com/start/latest) with batteries included: authentication, database, localization, UI components, and SSR. View the live demo at [tanstack-starter.dev](https://tanstack-starter.dev/). This template is designed to skip the boilerplate of starting a new project.
+Full-stack starter template for [`TanStack Start`](https://tanstack.com/start/latest) with batteries included: authentication, database, localization, UI components, and SSR. View the live demo at [tanstack-starter.dev](https://tanstack-starter.dev). This template is designed to skip the boilerplate of starting a new project.
 
 This template includes the following:
 
 - [`tanstack-start`](https://tanstack.com/start/latest)
-- [`drizzle-orm`](https://orm.drizzle.team/)
-- [`better-auth`](https://www.better-auth.com/)
+- [`drizzle-orm`](https://orm.drizzle.team)
+- [`better-auth`](https://www.better-auth.com)
 - [`shadcn/ui`](https://ui.shadcn.com/)
-- [`i18next`](https://react.i18next.com/)
-- [`resend`](https://resend.com/)
-- [`nitro`](https://nitro.build/)
-- [`vite`](https://vite.dev/)
+- [`paraglide`](https://inlang.com/m/gerre34r/library-inlang-paraglideJs)
+- [`resend`](https://resend.com)
+- [`nitro`](https://nitro.build)
+- [`vite`](https://vite.dev)
 
 ## Development
 
