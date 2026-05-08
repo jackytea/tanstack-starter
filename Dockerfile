@@ -1,4 +1,4 @@
-FROM node:25.9.0-alpine3.22
+FROM node:26.1.0-alpine3.23
 
 ARG APP_PORT
 
@@ -20,7 +20,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json pnpm-workspace.yaml ./
 
 RUN npm install -g pnpm && pnpm setup && pnpm install
 
