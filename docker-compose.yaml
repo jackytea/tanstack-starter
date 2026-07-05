@@ -9,7 +9,7 @@ services:
     networks:
       - docker-network
     ports:
-      - "${NITRO_PORT}:${NITRO_PORT}"
+      - '${NITRO_PORT}:${NITRO_PORT}'
     depends_on:
       - database
   database:
@@ -26,7 +26,7 @@ services:
     networks:
       - docker-network
     ports:
-      - "${DATABASE_PORT}:${DATABASE_PORT}"
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
 volumes:
   db-data:
 networks:

@@ -1,4 +1,9 @@
-import { Link, useRouteContext, useRouter, useRouterState } from '@tanstack/react-router'
+import {
+  Link,
+  useRouteContext,
+  useRouter,
+  useRouterState
+} from '@tanstack/react-router'
 import { Home, House, LogOut, Palmtree, User } from 'lucide-react'
 import { logoutSession } from '@/auth/utils/auth.utils'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher'
@@ -27,7 +32,10 @@ const NavBar = () => {
       <div className="container mx-auto flex h-full items-center justify-between p-0">
         <div className="mx-4 flex h-full w-full items-center justify-between border-gray-200 border-x px-4 dark:border-stone-800">
           <div className="flex items-center space-x-2">
-            <Link to={ROUTES.HOME} className="flex items-center gap-2 font-semibold text-lg md:text-base">
+            <Link
+              to={ROUTES.HOME}
+              className="flex items-center gap-2 font-semibold text-lg md:text-base"
+            >
               <Palmtree className="mt-0.5 h-4 w-4" />
               <span>{localize.application()}</span>
             </Link>
@@ -53,9 +61,17 @@ const NavBar = () => {
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <Link to={routerState.location.pathname === ROUTES.PROFILE ? ROUTES.HOME : ROUTES.PROFILE}>
+                  <Link
+                    to={
+                      routerState.location.pathname === ROUTES.PROFILE
+                        ? ROUTES.HOME
+                        : ROUTES.PROFILE
+                    }
+                  >
                     <DropdownMenuItem className="cursor-pointer">
-                      {routerState.location.pathname === ROUTES.PROFILE ? localize.home() : localize.profile()}
+                      {routerState.location.pathname === ROUTES.PROFILE
+                        ? localize.home()
+                        : localize.profile()}
                       <DropdownMenuShortcut>
                         {routerState.location.pathname === ROUTES.PROFILE ? (
                           <House className="h-4 w-4" />
@@ -82,7 +98,11 @@ const NavBar = () => {
             ) : (
               <Link
                 className="cursor-pointer rounded-full"
-                to={routerState.location.pathname === ROUTES.AUTH ? ROUTES.HOME : ROUTES.AUTH}
+                to={
+                  routerState.location.pathname === ROUTES.AUTH
+                    ? ROUTES.HOME
+                    : ROUTES.AUTH
+                }
               >
                 <Avatar className="ml-4 h-8 w-8 border-2 border-gray-200 bg-white dark:border-stone-800 dark:bg-neutral-800">
                   <AvatarFallback>

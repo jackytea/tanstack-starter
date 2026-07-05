@@ -1,4 +1,5 @@
 # Support
+
 Please read through the following guidelines.
 
 > 👉 **Note**: before contributing to this project, please read our

@@ -1,4 +1,6 @@
-const handleErrorWithNull = async <DataType>(callback: () => Promise<DataType>) => {
+const handleErrorWithNull = async <DataType>(
+  callback: () => Promise<DataType>
+) => {
   try {
     const value = await callback()
 

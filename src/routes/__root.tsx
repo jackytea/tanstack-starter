@@ -1,5 +1,11 @@
 import { QueryClient } from '@tanstack/react-query'
-import { createRootRouteWithContext, HeadContent, Outlet, ScriptOnce, Scripts } from '@tanstack/react-router'
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  Outlet,
+  ScriptOnce,
+  Scripts
+} from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 import { rootThemeScript } from '@/components/ThemeToggle/ThemeToggle.utils'
 import { APP } from '@/constants/app.constants'
@@ -13,7 +19,11 @@ import { UserWithAccount } from '@/types/user.type'
 
 const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
-    <html lang={getLocale()} suppressHydrationWarning suppressContentEditableWarning>
+    <html
+      lang={getLocale()}
+      suppressHydrationWarning
+      suppressContentEditableWarning
+    >
       <head>
         <HeadContent />
       </head>

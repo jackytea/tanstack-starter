@@ -1,5 +1,8 @@
 import { createServerFn } from '@tanstack/react-start'
-import { deleteAccountController, getAccountController } from '@/controllers/accounts.controller'
+import {
+  deleteAccountController,
+  getAccountController
+} from '@/controllers/accounts.controller'
 import { authMiddleware } from '@/middleware/auth.middleware'
 
 const getAccount = createServerFn({

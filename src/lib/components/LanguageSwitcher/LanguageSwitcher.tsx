@@ -23,10 +23,14 @@ const LanguageSwitcher = () => {
             <DropdownMenuItem
               className="cursor-pointer"
               key={languageOptions[languageOptionKey].language}
-              onClick={() => setLocale(languageOptions[languageOptionKey].language)}
+              onClick={() =>
+                setLocale(languageOptions[languageOptionKey].language)
+              }
             >
               {languageOptions[languageOptionKey].name}
-              <DropdownMenuShortcut className="h-4 w-4">{languageOptions[languageOptionKey].flag}</DropdownMenuShortcut>
+              <DropdownMenuShortcut className="h-4 w-4">
+                {languageOptions[languageOptionKey].flag}
+              </DropdownMenuShortcut>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

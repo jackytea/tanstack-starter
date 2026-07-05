@@ -1,6 +1,7 @@
 ## **Developing with Deno**
 
 Development commands for [`deno`](https://www.npmjs.com/package/deno):
+
 ```bash
 # install dependencies
 deno install
@@ -40,6 +41,7 @@ deno clean
 ```
 
 Utility commands for [`deno`](https://www.npmjs.com/package/deno):
+
 ```bash
 # verify all dependencies
 deno audit
@@ -70,6 +72,7 @@ deno run -A npm:react-compiler-healthcheck@experimental
 ```
 
 Generate an arbitrary secret value:
+
 ```bash
 # generic secret generator
 deno eval "console.log(btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32)))).replace(/[+\/=]/g, c => ({'+': '-', '/': '_', '=': ''}[c] || c)))"

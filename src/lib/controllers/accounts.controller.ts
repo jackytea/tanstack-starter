@@ -1,5 +1,8 @@
 import { eq } from 'drizzle-orm'
-import { deleteAccounts, selectAccounts } from '@/database/providers/accounts.provider'
+import {
+  deleteAccounts,
+  selectAccounts
+} from '@/database/providers/accounts.provider'
 import { accounts } from '@/database/schemas/account.schema'
 import { users } from '@/database/schemas/user.schema'
 import { firstElement } from '@/utils/array.utils'
@@ -42,7 +45,10 @@ const deleteAccountController = async (id: string, userId: string) => {
             id: users.id
           }
         ).then(firstElement)
-      : deleteAccounts({ where: eq(accounts.id, id) }, { id: accounts.id }).then(firstElement)
+      : deleteAccounts(
+          { where: eq(accounts.id, id) },
+          { id: accounts.id }
+        ).then(firstElement)
   })
 }
 

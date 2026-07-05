@@ -17,7 +17,10 @@ const sessions = pgTable('sessions', {
   userId: uuid('user_id')
     .notNull()
     .references(() => users.id, { onUpdate: 'cascade', onDelete: 'cascade' }),
-  accountId: uuid('account_id').references(() => accounts.id, { onUpdate: 'cascade', onDelete: 'cascade' })
+  accountId: uuid('account_id').references(() => accounts.id, {
+    onUpdate: 'cascade',
+    onDelete: 'cascade'
+  })
 })
 
 export { sessions }

@@ -30,55 +30,67 @@ To get up and running with this template you can run one of the following comman
 **Unix Commands**:
 
 If you are using [`npm`](https://www.npmjs.com/package/npm):
+
 ```bash
 npm install && npx drizzle-kit migrate && npm run build && npm run dev
 ```
 
 If you are using [`pnpm`](https://www.npmjs.com/package/pnpm):
+
 ```bash
 pnpm install && pnpm exec drizzle-kit migrate && pnpm build && pnpm dev
 ```
 
 If you are using [`deno`](https://www.npmjs.com/package/deno):
+
 ```bash
 deno install && deno run -A npm:drizzle-kit migrate && deno task build && deno task dev
 ```
 
 If you are using [`bun`](https://www.npmjs.com/package/bun):
+
 ```bash
 bun install && bunx drizzle-kit migrate && bun run build && bun run dev
 ```
 
 If you are using [`docker`](https://docker.com):
+
 ```bash
 docker compose -f docker-compose.yaml up --build -d
 ```
+
 > **Note For Docker:** You will still have to `install` dependencies and run `drizzle-kit migrate` with your package manager after.
 
 **PowerShell Commands**:
 
 If you are using [`npm`](https://www.npmjs.com/package/npm):
+
 ```powershell
 npm install; if ($?) { npx drizzle-kit migrate }; if ($?) { npm run build }; if ($?) { npm run dev }
 ```
 
 If you are using [`pnpm`](https://www.npmjs.com/package/pnpm):
+
 ```powershell
 pnpm install; if ($?) { pnpm exec drizzle-kit migrate }; if ($?) { pnpm build }; if ($?) { pnpm dev }
 ```
 
 If you are using [`deno`](https://www.npmjs.com/package/deno):
+
 ```powershell
 deno install; if ($?) { deno run -A npm:drizzle-kit migrate }; if ($?) { deno task build }; if ($?) { deno task dev }
 ```
 
 If you are using [`bun`](https://www.npmjs.com/package/bun):
+
 ```powershell
 bun install; if ($?) { bunx drizzle-kit migrate }; if ($?) { bun run build }; if ($?) { bun run dev }
 ```
 
 If you are using [`docker`](https://docker.com):
+
 ```powershell
 docker compose -f docker-compose.yaml up --build -d
 ```
+
 > **Note For Docker:** You will still have to `install` dependencies and run `drizzle-kit migrate` with your package manager after.

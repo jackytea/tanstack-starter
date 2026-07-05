@@ -6,7 +6,9 @@ import { RolldownConfig } from 'nitro/types'
 import { nitro } from 'nitro/vite'
 import { defineConfig, loadEnv } from 'vite'
 
-const buildOptions = (rollupAttribute: 'rolldownConfig' | 'rolldownOptions') => {
+const buildOptions = (
+  rollupAttribute: 'rolldownConfig' | 'rolldownOptions'
+) => {
   return {
     minify: true,
     cssMinify: true,

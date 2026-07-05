@@ -5,7 +5,9 @@ const themeKey = 'theme' as const
 const toggleTheme = () => {
   const themeNotSet = !(themeKey in localStorage)
   const isDarkTheme = document.documentElement.classList.contains(THEMES.DARK)
-  const prefersDarkTheme = window.matchMedia(`(prefers-color-scheme: ${THEMES.DARK})`).matches
+  const prefersDarkTheme = window.matchMedia(
+    `(prefers-color-scheme: ${THEMES.DARK})`
+  ).matches
 
   if (isDarkTheme || (themeNotSet && prefersDarkTheme)) {
     document.documentElement.classList.remove(THEMES.DARK)

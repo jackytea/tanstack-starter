@@ -1,9 +1,17 @@
 import type { InferInsertModel } from 'drizzle-orm'
-import type { PgTable, SelectedFields, SelectedFieldsFlat, TableConfig } from 'drizzle-orm/pg-core'
+import type {
+  PgTable,
+  SelectedFields,
+  SelectedFieldsFlat,
+  TableConfig
+} from 'drizzle-orm/pg-core'
 import { database } from '@/database/config/database.config'
 import type { DatabaseOptions } from '@/types/database.type'
 
-const selectRecords = <Select extends SelectedFields, Table extends TableConfig>(
+const selectRecords = <
+  Select extends SelectedFields,
+  Table extends TableConfig
+>(
   table: PgTable<Table>,
   select: Select = {} as Select,
   options: DatabaseOptions = {} as DatabaseOptions
@@ -25,16 +33,26 @@ const selectRecords = <Select extends SelectedFields, Table extends TableConfig>
   })(database.select(select).from(table))
 }
 
-const updateRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends TableConfig>(
+const updateRecords = <
+  ReturnedFields extends SelectedFieldsFlat,
+  Table extends TableConfig
+>(
   table: PgTable<Table>,
   data: Partial<InferInsertModel<PgTable<Table>>>,
   options: DatabaseOptions = {} as DatabaseOptions,
   returnedFields: ReturnedFields = {} as ReturnedFields
 ) => {
-  return database.update(table).set(data).where(options.where).returning(returnedFields)
+  return database
+    .update(table)
+    .set(data)
+    .where(options.where)
+    .returning(returnedFields)
 }
 
-const deleteRecords = <ReturnedFields extends SelectedFieldsFlat, Table extends TableConfig>(
+const deleteRecords = <
+  ReturnedFields extends SelectedFieldsFlat,
+  Table extends TableConfig
+>(
   table: PgTable<Table>,
   options: DatabaseOptions = {} as DatabaseOptions,
   returnedFields: ReturnedFields = {} as ReturnedFields

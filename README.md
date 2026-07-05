@@ -30,7 +30,7 @@ To get started, see the [`quick-start`](./docs/development/quick-start.md) guide
 **Better Auth Organization Support**
 
 > See [this issue](https://github.com/jackytea/tanstack-starter/issues/1) for details on implementing [organizations](https://better-auth.com/docs/plugins/organization).
-This feature has been removed in this [`commit`](https://github.com/jackytea/tanstack-starter/commit/ea88170cbfe7c15083bce5484baa3ece2992e877), as this template is focused on generic use cases.
+> This feature has been removed in this [`commit`](https://github.com/jackytea/tanstack-starter/commit/ea88170cbfe7c15083bce5484baa3ece2992e877), as this template is focused on generic use cases.
 
 ---
 
@@ -54,7 +54,7 @@ This feature has been removed in this [`commit`](https://github.com/jackytea/tan
 
 ## Contributors
 
- - [`jackytea`](https://github.com/jackytea)
+- [`jackytea`](https://github.com/jackytea)
 
 ## References
 

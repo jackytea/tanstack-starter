@@ -17,7 +17,9 @@ const authMiddleware = createMiddleware().server(async ({ next, request }) => {
     throw redirect({ to: ROUTES.AUTH })
   }
 
-  return next({ context: { user: { ...session.user, accountId: session.session.accountId } } })
+  return next({
+    context: { user: { ...session.user, accountId: session.session.accountId } }
+  })
 })
 
 export { authMiddleware }

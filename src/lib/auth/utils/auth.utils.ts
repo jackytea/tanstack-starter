@@ -19,7 +19,10 @@ const loginWithSocialProvider = async (provider: AuthProvider) => {
   return error === null
 }
 
-const logoutSession = async (router: TanstackUseRouter, queryClient: QueryClient) => {
+const logoutSession = async (
+  router: TanstackUseRouter,
+  queryClient: QueryClient
+) => {
   const { error } = await authClient.signOut({
     fetchOptions: {
       onSuccess: () => {

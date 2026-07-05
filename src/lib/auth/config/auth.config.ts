@@ -18,7 +18,8 @@ const auth = createServerOnlyFn(() =>
           user,
           session: {
             ...session,
-            accountId: (session as typeof session & { accountId: string }).accountId
+            accountId: (session as typeof session & { accountId: string })
+              .accountId
           }
         }
       })
@@ -31,7 +32,11 @@ const auth = createServerOnlyFn(() =>
       user: {
         create: {
           after: async (user) => {
-            await sendEmail(process.env.RESEND_FROM_EMAIL as string, [user.email], user.name)
+            await sendEmail(
+              process.env.RESEND_FROM_EMAIL as string,
+              [user.email],
+              user.name
+            )
           }
         }
       },
@@ -42,8 +47,14 @@ const auth = createServerOnlyFn(() =>
               return
             }
 
-            if (context.path.startsWith('/callback/:id') && context.params?.id) {
-              return sessionHook(session, context.params.id as AuthProviderWithEmail)
+            if (
+              context.path.startsWith('/callback/:id') &&
+              context.params?.id
+            ) {
+              return sessionHook(
+                session,
+                context.params.id as AuthProviderWithEmail
+              )
             }
 
             return

@@ -4,7 +4,9 @@ import { AppLayout } from '@/layouts/AppLayout/AppLayout'
 const ErrorBoundary = () => {
   return (
     <AppLayout>
-      <div className="flex h-full w-full items-center justify-center">{localize.anErrorOccurred()}</div>
+      <div className="flex h-full w-full items-center justify-center">
+        {localize.anErrorOccurred()}
+      </div>
     </AppLayout>
   )
 }

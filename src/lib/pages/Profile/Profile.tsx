@@ -60,7 +60,9 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center">
                   <div className="grid w-full text-center">
-                    <p className="mb-4 font-extrabold text-2xl">{account.name ?? ''}</p>
+                    <p className="mb-4 font-extrabold text-2xl">
+                      {account.name ?? ''}
+                    </p>
                     <Button
                       variant="destructive"
                       onClick={handleDeleteAccount}

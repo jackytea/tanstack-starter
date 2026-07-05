@@ -1,12 +1,18 @@
 import type { Session } from 'better-auth'
 import { and, eq } from 'drizzle-orm'
-import { selectAccounts, updateAccounts } from '@/database/providers/accounts.provider'
+import {
+  selectAccounts,
+  updateAccounts
+} from '@/database/providers/accounts.provider'
 import { accounts } from '@/database/schemas/account.schema'
 import { users } from '@/database/schemas/user.schema'
 import type { AuthProviderWithEmail } from '@/types/auth.type'
 import { firstElement } from '@/utils/array.utils'
 
-const sessionHook = async (session: Session, providerId: AuthProviderWithEmail) => {
+const sessionHook = async (
+  session: Session,
+  providerId: AuthProviderWithEmail
+) => {
   const currentAccount = await selectAccounts(
     {
       id: accounts.id,
@@ -15,7 +21,10 @@ const sessionHook = async (session: Session, providerId: AuthProviderWithEmail) 
       userDescription: users.description
     },
     {
-      where: and(eq(accounts.userId, session.userId), eq(accounts.providerId, providerId))
+      where: and(
+        eq(accounts.userId, session.userId),
+        eq(accounts.providerId, providerId)
+      )
     }
   )
     .innerJoin(users, eq(accounts.userId, users.id))
@@ -32,7 +41,10 @@ const sessionHook = async (session: Session, providerId: AuthProviderWithEmail) 
       description: currentAccount.userDescription
     },
     {
-      where: and(eq(accounts.id, currentAccount.id), eq(accounts.userId, session.userId))
+      where: and(
+        eq(accounts.id, currentAccount.id),
+        eq(accounts.userId, session.userId)
+      )
     },
     {
       id: accounts.id

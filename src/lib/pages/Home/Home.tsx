@@ -9,7 +9,9 @@ const Home = () => {
     <AppLayout>
       <div className="flex h-full w-full flex-col items-center justify-center">
         <h1 className="mb-3 font-black text-2xl">
-          🏝️ {user ? localize.welcome({ username: user.name }) : localize.hello()} 🏝️
+          🏝️{' '}
+          {user ? localize.welcome({ username: user.name }) : localize.hello()}{' '}
+          🏝️
         </h1>
       </div>
     </AppLayout>
