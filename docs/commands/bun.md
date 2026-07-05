@@ -67,9 +67,6 @@ bunx vite-bundle-visualizer
 # install dependencies for modules
 bun install --frozen-lockfile
 
-# migrate biome configuration
-bunx @biomejs/biome migrate --write
-
 # drizzle custom migration
 bunx drizzle-kit generate --custom
 

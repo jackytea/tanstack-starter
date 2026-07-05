@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "biomejs.biome",
     "csstools.postcss",
     "redhat.vscode-yaml",
     "inlang.vs-code-extension",

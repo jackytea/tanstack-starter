@@ -73,9 +73,6 @@ pnpm dlx vite-bundle-visualizer
 # ignore arbitrary script executions
 pnpm config set ignore-scripts true
 
-# migrate biome configuration
-pnpm dlx @biomejs/biome migrate --write
-
 # drizzle custom migration
 pnpm exec drizzle-kit generate --custom
 

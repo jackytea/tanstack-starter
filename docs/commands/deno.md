@@ -58,9 +58,6 @@ deno run -A npm:npm-check-updates -u
 # visualize vite bundle size
 deno run -A npm:vite-bundle-visualizer
 
-# migrate biome configuration
-deno run -A npm:@biomejs/biome migrate --write
-
 # drizzle custom migration
 deno run -A npm:drizzle-kit generate --custom
 

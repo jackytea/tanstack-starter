@@ -41,14 +41,9 @@
     ".env": true
   },
   "files.eol": "\n",
-  "biome.enabled": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     "source.organizeImports": "always"
-  },
-  "editor.defaultFormatter": "biomejs.biome",
-  "[json][jsonc][typescript][typescriptreact][javascript][javascriptreact][html][css]": {
-    "editor.defaultFormatter": "biomejs.biome"
   }
 }

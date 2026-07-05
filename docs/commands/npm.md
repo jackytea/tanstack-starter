@@ -70,9 +70,6 @@ npx vite-bundle-visualizer
 # ignore arbitrary script executions
 npm config set ignore-scripts true
 
-# migrate biome configuration
-npx @biomejs/biome migrate --write
-
 # drizzle custom migration
 npx drizzle-kit generate --custom
 
