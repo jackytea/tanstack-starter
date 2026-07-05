@@ -82,6 +82,9 @@ pnpm exec drizzle-kit generate --custom
 # detect circular dependencies
 pnpm dlx dpdm --no-warning --no-tree **/*.ts
 
+# update tailwind canonical classes
+pnpm dlx @tailwindcss/upgrade
+
 # validate for react compiler compatibility
 pnpm dlx react-compiler-healthcheck@experimental
 ```

@@ -67,6 +67,9 @@ deno run -A npm:drizzle-kit generate --custom
 # detect circular dependencies
 deno run -A npm:dpdm --no-warning --no-tree **/*.ts
 
+# update tailwind canonical classes
+deno run -A @tailwindcss/upgrade
+
 # validate for react compiler compatibility
 deno run -A npm:react-compiler-healthcheck@experimental
 ```

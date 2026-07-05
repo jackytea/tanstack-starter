@@ -76,6 +76,9 @@ bunx drizzle-kit generate --custom
 # detect circular dependencies
 bunx dpdm --no-warning --no-tree **/*.ts
 
+# update tailwind canonical classes
+bunx @tailwindcss/upgrade
+
 # validate for react compiler compatibility
 bunx react-compiler-healthcheck@experimental
 ```

@@ -79,6 +79,9 @@ npx drizzle-kit generate --custom
 # detect circular dependencies
 npx dpdm --no-warning --no-tree **/*.ts
 
+# update tailwind canonical classes
+npx @tailwindcss/upgrade
+
 # validate for react compiler compatibility
 npx react-compiler-healthcheck@experimental
 ```
