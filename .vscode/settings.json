@@ -41,9 +41,11 @@
     ".env": true
   },
   "files.eol": "\n",
+  "oxc.enable": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     "source.organizeImports": "always"
-  }
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode"
 }
