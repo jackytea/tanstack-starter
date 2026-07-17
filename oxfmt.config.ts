@@ -22,8 +22,8 @@ const config = defineConfig({
     '**/.tanstack',
     '**/node_modules',
     '**/routeTree.gen.ts',
-    '**/lib/i18n/compiled',
-    '**/lib/i18n/config.inlang'
+    '**/src/lib/i18n/compiled',
+    '**/src/lib/i18n/config.inlang'
   ]
 })
 

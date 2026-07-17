@@ -37,6 +37,11 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "vite.config.ts"],
-  "references": [{ "path": "tsconfig.vite.json" }]
+  "references": [{ "path": "tsconfig.vite.json" }],
+  "exclude": [
+    "node_modules",
+    "vite.config.ts",
+    "src/lib/i18n/compiled",
+    "src/lib/i18n/config.inlang"
+  ]
 }
