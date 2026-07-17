@@ -28,7 +28,7 @@ const LanguageSwitcher = () => {
               }
             >
               {languageOptions[languageOptionKey].name}
-              <DropdownMenuShortcut className="h-4 w-4">
+              <DropdownMenuShortcut className="size-4">
                 {languageOptions[languageOptionKey].flag}
               </DropdownMenuShortcut>
             </DropdownMenuItem>

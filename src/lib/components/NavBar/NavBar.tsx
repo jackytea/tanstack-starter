@@ -30,13 +30,13 @@ const NavBar = () => {
   return (
     <header className="fixed top-0 z-50 h-(--header-height) w-full bg-white dark:bg-stone-950">
       <div className="container mx-auto flex h-full items-center justify-between p-0">
-        <div className="mx-4 flex h-full w-full items-center justify-between border-gray-200 border-x px-4 dark:border-stone-800">
+        <div className="mx-4 flex size-full items-center justify-between border-x border-gray-200 px-4 dark:border-stone-800">
           <div className="flex items-center space-x-2">
             <Link
               to={ROUTES.HOME}
-              className="flex items-center gap-2 font-semibold text-lg md:text-base"
+              className="text-lg flex items-center gap-2 font-semibold md:text-base"
             >
-              <Palmtree className="mt-0.5 h-4 w-4" />
+              <Palmtree className="mt-0.5 size-4" />
               <span>{localize.application()}</span>
             </Link>
           </div>
@@ -50,11 +50,11 @@ const NavBar = () => {
                   <div className="ml-4 cursor-pointer rounded-full">
                     <Avatar
                       key={user?.id}
-                      className="h-8 w-8 border border-gray-200 bg-white dark:border-stone-800 dark:bg-neutral-800"
+                      className="size-8 border border-gray-200 bg-white dark:border-stone-800 dark:bg-neutral-800"
                     >
                       <AvatarImage src={user?.image ?? ''} />
                       <AvatarFallback>
-                        <User className="h-4 w-4" />
+                        <User className="size-4" />
                       </AvatarFallback>
                     </Avatar>
                     <span className="sr-only">Toggle user menu</span>
@@ -74,9 +74,9 @@ const NavBar = () => {
                         : localize.profile()}
                       <DropdownMenuShortcut>
                         {routerState.location.pathname === ROUTES.PROFILE ? (
-                          <House className="h-4 w-4" />
+                          <House className="size-4" />
                         ) : (
-                          <User className="h-4 w-4" />
+                          <User className="size-4" />
                         )}
                       </DropdownMenuShortcut>
                     </DropdownMenuItem>
@@ -90,7 +90,7 @@ const NavBar = () => {
                   >
                     {localize.signOut()}
                     <DropdownMenuShortcut>
-                      <LogOut className="h-4 w-4" />
+                      <LogOut className="size-4" />
                     </DropdownMenuShortcut>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -104,12 +104,12 @@ const NavBar = () => {
                     : ROUTES.AUTH
                 }
               >
-                <Avatar className="ml-4 h-8 w-8 border-2 border-gray-200 bg-white dark:border-stone-800 dark:bg-neutral-800">
+                <Avatar className="ml-4 size-8 border-2 border-gray-200 bg-white dark:border-stone-800 dark:bg-neutral-800">
                   <AvatarFallback>
                     {routerState.location.pathname === ROUTES.AUTH ? (
-                      <Home className="h-4 w-4" />
+                      <Home className="size-4" />
                     ) : (
-                      <User className="h-4 w-4" />
+                      <User className="size-4" />
                     )}
                   </AvatarFallback>
                 </Avatar>

@@ -53,7 +53,7 @@ const Auth = () => {
         onClick={handleSocialLogout}
       >
         <div className="flex items-center justify-center gap-2">
-          <LogOut className="h-4 w-4" />
+          <LogOut className="size-4" />
           <span>{localize.signOut()}</span>
         </div>
       </Button>
@@ -83,7 +83,7 @@ const Auth = () => {
 
   return (
     <AppLayout>
-      <div className="flex h-full w-full items-center justify-center">
+      <div className="flex size-full items-center justify-center">
         <div className="flex w-full flex-col gap-6 sm:w-96">
           <Card>
             <CardHeader className="text-center">
@@ -98,9 +98,9 @@ const Auth = () => {
             </CardHeader>
             <CardContent>
               <div className="grid h-40 w-full gap-6">
-                <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+                <div className="flex size-full flex-col items-center justify-center gap-4">
                   {isLoading ? (
-                    <LoadingSpinner className="h-12 w-12 animate-spin" />
+                    <LoadingSpinner className="size-12 animate-spin" />
                   ) : (
                     renderLoginButtons()
                   )}

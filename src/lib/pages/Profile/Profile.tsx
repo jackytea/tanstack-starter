@@ -37,22 +37,22 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
 
   return (
     <AppLayout>
-      <div className="flex h-full w-full flex-col items-center justify-center">
+      <div className="flex size-full flex-col items-center justify-center">
         {account ? (
           <Card>
             {isLoading ? (
               <div className="w-full">
-                <LoadingSpinner className="h-12 w-12 animate-spin" />
+                <LoadingSpinner className="size-12 animate-spin" />
               </div>
             ) : (
               <>
                 <CardHeader className="text-center">
-                  <Avatar className="flex h-48 w-48 items-center justify-center">
+                  <Avatar className="flex size-48 items-center justify-center">
                     <AvatarImage
-                      className="h-48 w-48 rounded-full border-2 border-gray-200 dark:border-stone-800"
+                      className="size-48 rounded-full border-2 border-gray-200 dark:border-stone-800"
                       src={account.image ?? ''}
                     />
-                    <AvatarFallback className="flex h-48 w-48 items-center justify-center rounded-full border-2 border-gray-200 bg-gray-100 text-5xl dark:border-stone-800 dark:bg-stone-900">
+                    <AvatarFallback className="flex size-48 items-center justify-center rounded-full border-2 border-gray-200 bg-gray-100 text-5xl dark:border-stone-800 dark:bg-stone-900">
                       {account.name?.[0] ?? ''}
                       {account.name?.split(' ')?.[1]?.[0] ?? ''}
                     </AvatarFallback>
@@ -60,7 +60,7 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center">
                   <div className="grid w-full text-center">
-                    <p className="mb-4 font-extrabold text-2xl">
+                    <p className="mb-4 text-2xl font-extrabold">
                       {account.name ?? ''}
                     </p>
                     <Button
@@ -77,7 +77,7 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
           </Card>
         ) : (
           <>
-            <X className="h-32 w-32 text-red-500" />
+            <X className="size-32 text-red-500" />
             <p className="text-lg">{localize.accountNotFound()}</p>
           </>
         )}

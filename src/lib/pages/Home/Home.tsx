@@ -7,8 +7,8 @@ const Home = () => {
 
   return (
     <AppLayout>
-      <div className="flex h-full w-full flex-col items-center justify-center">
-        <h1 className="mb-3 font-black text-2xl">
+      <div className="flex size-full flex-col items-center justify-center">
+        <h1 className="mb-3 text-2xl font-black">
           🏝️{' '}
           {user ? localize.welcome({ username: user.name }) : localize.hello()}{' '}
           🏝️

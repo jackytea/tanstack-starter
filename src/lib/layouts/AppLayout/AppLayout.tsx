@@ -8,7 +8,7 @@ const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
       <NavBar />
       <div className="h-14 w-full" />
       <div className="container">
-        <div className="h-full border-gray-200 border-x p-4 dark:border-stone-800">
+        <div className="h-full border-x border-gray-200 p-4 dark:border-stone-800">
           {children}
         </div>
       </div>
