@@ -14,7 +14,7 @@ services:
       - database
   database:
     container_name: database
-    image: postgres:18.3-alpine3.23
+    image: postgres:latest
     volumes:
       - db-data:/var/lib/postgresql
     env_file:
