@@ -6,14 +6,11 @@ Development commands for [`bun`](https://www.npmjs.com/package/bun):
 # install dependencies
 bun install
 
-# lint and fix errors
+# lint and format
 bun run fix
 
 # remove unused code
 bun run knip
-
-# format all the code
-bun run format
 
 # type check the code
 bun run validate

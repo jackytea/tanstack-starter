@@ -6,14 +6,11 @@ Development commands for [`npm`](https://www.npmjs.com/package/npm):
 # install dependencies
 npm install
 
-# lint and fix errors
+# lint and format
 npm run fix
 
 # remove unused code
 npm run knip
-
-# format all the code
-npm run format
 
 # type check the code
 npm run validate

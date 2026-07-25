@@ -6,14 +6,11 @@ Development commands for [`deno`](https://www.npmjs.com/package/deno):
 # install dependencies
 deno install
 
-# lint and fix errors
+# lint and format
 deno task fix
 
 # remove unused code
 deno task knip
-
-# format all the code
-deno task format
 
 # type check the code
 deno task validate

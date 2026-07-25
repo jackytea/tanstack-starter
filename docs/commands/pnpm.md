@@ -6,14 +6,11 @@ Development commands for [`pnpm`](https://www.npmjs.com/package/pnpm):
 # install dependencies
 pnpm install
 
-# lint and fix errors
+# lint and format
 pnpm fix
 
 # remove unused code
 pnpm knip
-
-# format all the code
-pnpm format
 
 # type check the code
 pnpm validate
