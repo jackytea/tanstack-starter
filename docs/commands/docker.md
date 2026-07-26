@@ -7,6 +7,12 @@ Development commands for [`docker`](https://docker.com):
 docker compose -f docker-compose.yaml up --build -d
 ```
 
+A `.env` file must exist at the repository root before building it (copy it
+from `.env.example` and fill in real values). The build stage mounts it as a
+[BuildKit build secret](https://docs.docker.com/build/building/secrets/) to
+read `VITE_*` variables at build time without baking `.env` into an image
+layer, and the build fails if it's missing.
+
 Utility commands for [`docker`](https://docker.com):
 
 ```bash
@@ -24,146 +30,158 @@ docker volume prune --force --all
 
 **NPM**
 
-If you want to use [`npm`](https://www.npmjs.com/package/npm) in your [`Dockerfile`](../../Dockerfile), replace it with this:
+If you want to use [`npm`](https://www.npmjs.com/package/npm) in your
+[`Dockerfile`](../../Dockerfile), replace it with this:
 
 ```dockerfile
-FROM node:latest
+# syntax=docker/dockerfile:1
 
-ARG APP_PORT
-
-ARG APP_HOST
-
-ARG NITRO_PORT
-
-ENV APP_PORT=$APP_PORT
-
-ENV APP_HOST=$APP_HOST
-
-ENV NITRO_PORT=$NITRO_PORT
+#########################################
+#               Base Image              #
+#########################################
+FROM node:alpine AS base
 
 WORKDIR /app
 
-COPY package*.json ./
 
+#########################################
+#            Install Packages           #
+#########################################
+FROM base AS deps
+
+COPY package*.json ./
 RUN npm install -g patch-package && npm install
 
+
+#########################################
+#           Build Application           #
+#########################################
+FROM base AS build
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . ./
 
-RUN npm run build
+RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
+    npm run build
 
-EXPOSE $NITRO_PORT
 
-CMD ["npm", "run", "start"]
+#########################################
+#             Runtime Image             #
+#########################################
+FROM node:alpine AS runtime
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=build /app/.output ./.output
+
+CMD ["node", ".output/server/index.mjs"]
 ```
 
 **PNPM**
 
-If you want to use [`pnpm`](https://www.npmjs.com/package/pnpm) in your [`Dockerfile`](../../Dockerfile), replace it with this:
-
-```dockerfile
-FROM node:latest
-
-ARG APP_PORT
-
-ARG APP_HOST
-
-ARG NITRO_PORT
-
-ENV APP_PORT=$APP_PORT
-
-ENV APP_HOST=$APP_HOST
-
-ENV NITRO_PORT=$NITRO_PORT
-
-ENV SHELL=bash
-
-ENV PNPM_HOME="/pnpm"
-
-ENV PATH="$PNPM_HOME:$PATH"
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install -g pnpm && pnpm setup && pnpm install
-
-COPY . ./
-
-RUN pnpm build
-
-EXPOSE $NITRO_PORT
-
-CMD ["pnpm", "start"]
-```
+This is the default approach already used by the root
+[`Dockerfile`](../../Dockerfile) — no changes needed.
 
 **Bun**
 
-If you want to use [`bun`](https://www.npmjs.com/package/bun) in your [`Dockerfile`](../../Dockerfile), replace it with this:
+If you want to use [`bun`](https://www.npmjs.com/package/bun) in your
+[`Dockerfile`](../../Dockerfile), replace it with this:
 
 ```dockerfile
-FROM oven/bun:latest
+# syntax=docker/dockerfile:1
 
-ARG APP_PORT
-
-ARG APP_HOST
-
-ARG NITRO_PORT
-
-ENV APP_PORT=$APP_PORT
-
-ENV APP_HOST=$APP_HOST
-
-ENV NITRO_PORT=$NITRO_PORT
-
-ENV SHELL=bash
+#########################################
+#               Base Image              #
+#########################################
+FROM oven/bun:alpine AS base
 
 WORKDIR /app
 
-COPY package*.json ./
 
+#########################################
+#            Install Packages           #
+#########################################
+FROM base AS deps
+
+COPY package*.json ./
 RUN bun install
 
+
+#########################################
+#           Build Application           #
+#########################################
+FROM base AS build
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . ./
 
-RUN bun run build
+RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
+    bun run build
 
-EXPOSE $NITRO_PORT
 
-CMD ["bun", "run", "start"]
+#########################################
+#             Runtime Image             #
+#########################################
+FROM node:alpine AS runtime
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=build /app/.output ./.output
+
+CMD ["node", ".output/server/index.mjs"]
 ```
 
 **Deno**
 
-If you want to use [`deno`](https://www.npmjs.com/package/deno) in your [`Dockerfile`](../../Dockerfile), replace it with this:
+If you want to use [`deno`](https://www.npmjs.com/package/deno) in your
+[`Dockerfile`](../../Dockerfile), replace it with this:
 
 ```dockerfile
-FROM denoland/deno:latest
+# syntax=docker/dockerfile:1
 
-ARG APP_PORT
-
-ARG APP_HOST
-
-ARG NITRO_PORT
-
-ENV APP_PORT=$APP_PORT
-
-ENV APP_HOST=$APP_HOST
-
-ENV NITRO_PORT=$NITRO_PORT
-
-ENV SHELL=bash
+#########################################
+#               Base Image              #
+#########################################
+FROM denoland/deno:alpine AS base
 
 WORKDIR /app
 
-COPY package*.json ./
 
+#########################################
+#            Install Packages           #
+#########################################
+FROM base AS deps
+
+COPY package*.json ./
 RUN deno install
 
+
+#########################################
+#           Build Application           #
+#########################################
+FROM base AS build
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . ./
 
-RUN deno task build
+RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
+    deno task build
 
-EXPOSE $NITRO_PORT
 
-CMD ["deno", "task", "start"]
+#########################################
+#             Runtime Image             #
+#########################################
+FROM node:alpine AS runtime
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=build /app/.output ./.output
+
+CMD ["node", ".output/server/index.mjs"]
 ```

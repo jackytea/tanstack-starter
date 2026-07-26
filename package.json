@@ -46,7 +46,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.2.0",
-    "@inlang/paraglide-js": "^2.22.0",
+    "@inlang/paraglide-js": "^2.23.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^25.9.5",
     "@types/pg": "^8.20.0",
@@ -59,7 +59,7 @@
     "nitro": "3.0.260429-beta",
     "oxfmt": "^0.57.0",
     "oxlint": "^1.75.0",
-    "oxlint-tailwindcss": "^1.4.0",
+    "oxlint-tailwindcss": "^1.6.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "vite": "^8.1.5"

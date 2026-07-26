@@ -1,33 +1,48 @@
-FROM node:26.5.0-alpine3.23
+# syntax=docker/dockerfile:1
 
-ARG APP_PORT
-
-ARG APP_HOST
-
-ARG NITRO_PORT
-
-ENV APP_PORT=$APP_PORT
-
-ENV APP_HOST=$APP_HOST
-
-ENV NITRO_PORT=$NITRO_PORT
+#########################################
+#               Base Image              #
+#########################################
+FROM node:alpine AS base
 
 ENV SHELL=bash
-
 ENV PNPM_HOME="/pnpm"
-
 ENV PATH="$PNPM_HOME:$PATH"
+
+RUN npm install -g pnpm
+WORKDIR /app
+
+
+#########################################
+#            Install Packages           #
+#########################################
+FROM base AS deps
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
+
+
+#########################################
+#           Build Application           #
+#########################################
+FROM base AS build
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . ./
+
+RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
+    pnpm build
+
+
+#########################################
+#             Runtime Image             #
+#########################################
+FROM node:alpine AS runtime
 
 WORKDIR /app
 
-COPY package*.json pnpm-workspace.yaml ./
+ENV NODE_ENV=production
 
-RUN npm install -g pnpm && pnpm setup && pnpm install
+COPY --from=build /app/.output ./.output
 
-COPY . ./
-
-RUN pnpm build
-
-EXPOSE $NITRO_PORT
-
-CMD ["pnpm", "start"]
+CMD ["node", ".output/server/index.mjs"]

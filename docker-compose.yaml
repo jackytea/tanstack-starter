@@ -4,6 +4,8 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
+      secrets:
+        - dotenv
     env_file:
       - .env
     networks:
@@ -31,3 +33,6 @@ volumes:
   db-data:
 networks:
   docker-network:
+secrets:
+  dotenv:
+    file: .env

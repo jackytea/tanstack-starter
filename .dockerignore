@@ -8,7 +8,10 @@
 /.nitro
 /.husky
 /.cache
+/.env.*
 /build
 /*.md
 /dist
+/.env
+/.git
 /tmp
