@@ -1,6 +1,9 @@
 /app.config.timestamp*
+/pnpm-debug.log*
 /node_modules
 /.tanstack
+.DS_Store
+Thumbs.db
 /.vercel
 /.output
 /.nitro
