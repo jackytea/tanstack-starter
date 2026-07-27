@@ -11,4 +11,5 @@ Thumbs.db
 /build
 /.env
 /dist
+/temp
 /tmp

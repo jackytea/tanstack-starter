@@ -1,8 +1,6 @@
 # syntax=docker/dockerfile:1
 
-#########################################
-#               Base Image              #
-#########################################
+############ Base Image ###########
 FROM node:alpine AS base
 
 ENV SHELL=bash
@@ -13,18 +11,14 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 
-#########################################
-#            Install Packages           #
-#########################################
+######### Install Packages ########
 FROM base AS deps
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 
-#########################################
-#           Build Application           #
-#########################################
+######## Build Application ########
 FROM base AS build
 
 COPY --from=deps /app/node_modules ./node_modules
@@ -34,9 +28,7 @@ RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
     pnpm build
 
 
-#########################################
-#             Runtime Image             #
-#########################################
+########## Runtime Image ##########
 FROM node:alpine AS runtime
 
 WORKDIR /app

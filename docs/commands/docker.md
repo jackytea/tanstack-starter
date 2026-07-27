@@ -36,26 +36,20 @@ If you want to use [`npm`](https://www.npmjs.com/package/npm) in your
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-#########################################
-#               Base Image              #
-#########################################
+############ Base Image ###########
 FROM node:alpine AS base
 
 WORKDIR /app
 
 
-#########################################
-#            Install Packages           #
-#########################################
+######### Install Packages ########
 FROM base AS deps
 
 COPY package*.json ./
 RUN npm install -g patch-package && npm install
 
 
-#########################################
-#           Build Application           #
-#########################################
+######## Build Application ########
 FROM base AS build
 
 COPY --from=deps /app/node_modules ./node_modules
@@ -65,9 +59,7 @@ RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
     npm run build
 
 
-#########################################
-#             Runtime Image             #
-#########################################
+########## Runtime Image ##########
 FROM node:alpine AS runtime
 
 WORKDIR /app
@@ -92,26 +84,20 @@ If you want to use [`bun`](https://www.npmjs.com/package/bun) in your
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-#########################################
-#               Base Image              #
-#########################################
+############ Base Image ###########
 FROM oven/bun:alpine AS base
 
 WORKDIR /app
 
 
-#########################################
-#            Install Packages           #
-#########################################
+######### Install Packages ########
 FROM base AS deps
 
 COPY package*.json ./
 RUN bun install
 
 
-#########################################
-#           Build Application           #
-#########################################
+######## Build Application ########
 FROM base AS build
 
 COPY --from=deps /app/node_modules ./node_modules
@@ -121,9 +107,7 @@ RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
     bun run build
 
 
-#########################################
-#             Runtime Image             #
-#########################################
+########## Runtime Image ##########
 FROM node:alpine AS runtime
 
 WORKDIR /app
@@ -143,26 +127,20 @@ If you want to use [`deno`](https://www.npmjs.com/package/deno) in your
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-#########################################
-#               Base Image              #
-#########################################
+############ Base Image ###########
 FROM denoland/deno:alpine AS base
 
 WORKDIR /app
 
 
-#########################################
-#            Install Packages           #
-#########################################
+######### Install Packages ########
 FROM base AS deps
 
 COPY package*.json ./
 RUN deno install
 
 
-#########################################
-#           Build Application           #
-#########################################
+######## Build Application ########
 FROM base AS build
 
 COPY --from=deps /app/node_modules ./node_modules
@@ -172,9 +150,7 @@ RUN --mount=type=secret,id=dotenv,target=/app/.env,required=true \
     deno task build
 
 
-#########################################
-#             Runtime Image             #
-#########################################
+########## Runtime Image ##########
 FROM node:alpine AS runtime
 
 WORKDIR /app
