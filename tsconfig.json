@@ -24,6 +24,7 @@
       "@/controllers/*": ["./src/lib/controllers/*"],
       "@/database/*": ["./src/lib/database/*"],
       "@/email/*": ["./src/lib/email/*"],
+      "@/hooks/*": ["./src/lib/hooks/*"],
       "@/i18n/*": ["./src/lib/i18n/*"],
       "@/layouts/*": ["./src/lib/layouts/*"],
       "@/middleware/*": ["./src/lib/middleware/*"],

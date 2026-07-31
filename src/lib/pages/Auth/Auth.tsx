@@ -1,11 +1,9 @@
-import { useRouter } from '@tanstack/react-router'
-import { LogOut } from 'lucide-react'
-import { useState } from 'react'
 import { loginWithSocialProvider, logoutSession } from '@/auth/utils/auth.utils'
 import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
 import { APP } from '@/constants/app.constants'
 import { m as localize } from '@/i18n/compiled/messages'
 import { AppLayout } from '@/layouts/AppLayout/AppLayout'
+import { useResetLoadingOnPageRestore } from '@/lib/hooks/page.hooks'
 import { socialLoginButtons } from '@/pages/Auth/Auth.utils'
 import { Route as RootRoute } from '@/routes/__root'
 import type { AuthProvider } from '@/types/auth.type'
@@ -17,19 +15,22 @@ import {
   CardHeader,
   CardTitle
 } from '@/ui/card'
+import { useRouter } from '@tanstack/react-router'
+import { LogOut } from 'lucide-react'
+import { useState } from 'react'
 
 const Auth = () => {
   const router = useRouter()
   const { user, queryClient } = RootRoute.useRouteContext()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  useResetLoadingOnPageRestore(setIsLoading)
+
   const handleSocialLogin = async (provider: AuthProvider) => {
     try {
       setIsLoading(true)
       await loginWithSocialProvider(provider)
     } catch {
-      setIsLoading(false)
-    } finally {
       setIsLoading(false)
     }
   }
@@ -39,8 +40,6 @@ const Auth = () => {
       setIsLoading(true)
       await logoutSession(router, queryClient)
     } catch {
-      setIsLoading(false)
-    } finally {
       setIsLoading(false)
     }
   }

@@ -1,17 +1,18 @@
-import { useRouter } from '@tanstack/react-router'
-import { useServerFn } from '@tanstack/react-start'
-import { X } from 'lucide-react'
-import { useState } from 'react'
 import { logoutSession } from '@/auth/utils/auth.utils'
 import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
 import { m as localize } from '@/i18n/compiled/messages'
 import { AppLayout } from '@/layouts/AppLayout/AppLayout'
+import { useResetLoadingOnPageRestore } from '@/lib/hooks/page.hooks'
 import { Route as RootRoute } from '@/routes/__root'
 import { deleteAccount } from '@/services/accounts.service'
 import { AccountWithImage } from '@/types/account.provider.type'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { Button } from '@/ui/button'
 import { Card, CardContent, CardHeader } from '@/ui/card'
+import { useRouter } from '@tanstack/react-router'
+import { useServerFn } from '@tanstack/react-start'
+import { X } from 'lucide-react'
+import { useState } from 'react'
 
 const Profile = ({ account }: { account: AccountWithImage | null }) => {
   const router = useRouter()
@@ -19,18 +20,16 @@ const Profile = ({ account }: { account: AccountWithImage | null }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const deleteAccountServerFn = useServerFn(deleteAccount)
 
+  useResetLoadingOnPageRestore(setIsLoading)
+
   const handleDeleteAccount = async () => {
     try {
+      setIsLoading(true)
       await deleteAccountServerFn().then(() => {
         router.invalidate()
       })
-
-      setIsLoading(false)
-
       await logoutSession(router, queryClient)
     } catch {
-      setIsLoading(false)
-    } finally {
       setIsLoading(false)
     }
   }
