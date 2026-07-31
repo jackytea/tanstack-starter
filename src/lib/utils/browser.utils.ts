@@ -14,7 +14,8 @@ const destroySession = () => {
     const name = equal > -1 ? cookie.substring(0, equal) : cookie
 
     document.cookie =
-      name + `=;expires=${import.meta.env.VITE_COOKIE_EXPIRY_DATE as string}`
+      name +
+      `=;expires=${import.meta.env.VITE_COOKIE_EXPIRY_DATE as string};path=/`
   }
 }
 

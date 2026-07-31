@@ -1,12 +1,20 @@
-import type { InferInsertModel } from 'drizzle-orm'
+import { database } from '@/database/config/database.config'
+import type { DatabaseOptions } from '@/types/database.type'
+import { and, type InferInsertModel, type SQL } from 'drizzle-orm'
 import type {
   PgTable,
   SelectedFields,
   SelectedFieldsFlat,
   TableConfig
 } from 'drizzle-orm/pg-core'
-import { database } from '@/database/config/database.config'
-import type { DatabaseOptions } from '@/types/database.type'
+
+const mergeAndClauses = (
+  first: SQL<unknown>,
+  second: SQL<unknown>,
+  ...rest: SQL<unknown>[]
+): SQL<unknown> => {
+  return and(first, second, ...rest) as SQL<unknown>
+}
 
 const selectRecords = <
   Select extends SelectedFields,
@@ -39,14 +47,10 @@ const updateRecords = <
 >(
   table: PgTable<Table>,
   data: Partial<InferInsertModel<PgTable<Table>>>,
-  options: DatabaseOptions = {} as DatabaseOptions,
+  where: SQL<unknown>,
   returnedFields: ReturnedFields = {} as ReturnedFields
 ) => {
-  return database
-    .update(table)
-    .set(data)
-    .where(options.where)
-    .returning(returnedFields)
+  return database.update(table).set(data).where(where).returning(returnedFields)
 }
 
 const deleteRecords = <
@@ -54,10 +58,10 @@ const deleteRecords = <
   Table extends TableConfig
 >(
   table: PgTable<Table>,
-  options: DatabaseOptions = {} as DatabaseOptions,
+  where: SQL<unknown>,
   returnedFields: ReturnedFields = {} as ReturnedFields
 ) => {
-  return database.delete(table).where(options.where).returning(returnedFields)
+  return database.delete(table).where(where).returning(returnedFields)
 }
 
-export { deleteRecords, selectRecords, updateRecords }
+export { deleteRecords, mergeAndClauses, selectRecords, updateRecords }

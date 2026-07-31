@@ -1,13 +1,14 @@
-import type { Session } from 'better-auth'
-import { and, eq } from 'drizzle-orm'
 import {
   selectAccounts,
   updateAccounts
 } from '@/database/providers/accounts.provider'
 import { accounts } from '@/database/schemas/account.schema'
+import { mergeAndClauses } from '@/database/utils/database.utils'
 import { users } from '@/database/schemas/user.schema'
 import type { AuthProviderWithEmail } from '@/types/auth.type'
 import { firstElement } from '@/utils/array.utils'
+import type { Session } from 'better-auth'
+import { and, eq } from 'drizzle-orm'
 
 const sessionHook = async (
   session: Session,
@@ -40,12 +41,10 @@ const sessionHook = async (
       image: currentAccount.userImage,
       description: currentAccount.userDescription
     },
-    {
-      where: and(
-        eq(accounts.id, currentAccount.id),
-        eq(accounts.userId, session.userId)
-      )
-    },
+    mergeAndClauses(
+      eq(accounts.id, currentAccount.id),
+      eq(accounts.userId, session.userId)
+    ),
     {
       id: accounts.id
     }

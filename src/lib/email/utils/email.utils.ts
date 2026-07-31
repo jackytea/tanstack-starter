@@ -1,5 +1,5 @@
-import { config as dotEnvConfig } from 'dotenv'
 import { emailClient } from '@/email/config/email.config'
+import { config as dotEnvConfig } from 'dotenv'
 
 dotEnvConfig({ quiet: true })
 

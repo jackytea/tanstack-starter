@@ -1,13 +1,13 @@
-import { SelectedFieldsFlat } from 'drizzle-orm/pg-core'
 import { users } from '@/database/schemas/user.schema'
 import { deleteRecords } from '@/database/utils/database.utils'
-import { DatabaseOptions } from '@/types/database.type'
+import type { SQL } from 'drizzle-orm'
+import { SelectedFieldsFlat } from 'drizzle-orm/pg-core'
 
 const deleteUsers = <ReturnedFields extends SelectedFieldsFlat>(
-  options: DatabaseOptions = {} as DatabaseOptions,
+  where: SQL<unknown>,
   returnedFields: ReturnedFields = {} as ReturnedFields
 ) => {
-  return deleteRecords(users, options, returnedFields)
+  return deleteRecords(users, where, returnedFields)
 }
 
 export { deleteUsers }
