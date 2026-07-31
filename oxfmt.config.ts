@@ -4,6 +4,7 @@ const config = defineConfig({
   semi: false,
   tabWidth: 2,
   printWidth: 80,
+  endOfLine: 'lf',
   useTabs: false,
   singleQuote: true,
   bracketSpacing: true,
@@ -12,6 +13,7 @@ const config = defineConfig({
   trailingComma: 'none',
   arrowParens: 'always',
   quoteProps: 'as-needed',
+  insertFinalNewline: true,
   singleAttributePerLine: false,
   ignorePatterns: [
     '**/build',

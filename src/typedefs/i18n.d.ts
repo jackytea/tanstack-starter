@@ -1,6 +1,6 @@
 declare module '@/i18n/compiled/runtime' {
-  function getLocale(): string
-  function setLocale(locale: string): void
+  const getLocale: () => string
+  const setLocale: (locale: string) => void
 
   export { getLocale, setLocale }
 }
@@ -12,10 +12,10 @@ declare module '@/i18n/compiled/messages' {
 }
 
 declare module '@/i18n/compiled/server' {
-  function paraglideMiddleware(
+  const paraglideMiddleware: (
     request: Request,
     resolve: (context: { request: Request }) => Response | Promise<Response>
-  ): Promise<Response>
+  ) => Promise<Response>
 
   export { paraglideMiddleware }
 }

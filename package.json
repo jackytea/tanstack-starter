@@ -35,7 +35,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
-    "lucide-react": "^1.27.0",
+    "lucide-react": "^1.28.0",
     "pg": "^8.22.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -50,19 +50,19 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^25.9.5",
     "@types/pg": "^8.20.0",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.4",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5",
     "drizzle-kit": "^0.31.10",
     "husky": "^9.1.7",
-    "knip": "^6.29.0",
+    "knip": "^6.30.0",
     "nitro": "3.0.260429-beta",
     "oxfmt": "^0.57.0",
     "oxlint": "^1.76.0",
     "oxlint-tailwindcss": "^1.6.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vite": "^8.1.5"
+    "vite": "^8.2.0"
   },
   "optionalDependencies": {
     "bufferutil": "^4.1.0"
