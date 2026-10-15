@@ -1,18 +1,17 @@
+import { sessionHook } from '@/auth/hooks/auth.hooks'
+import { database } from '@/database/config/database.config'
+import { sendEmail } from '@/email/utils/email.utils'
+import type { AuthProviderWithEmail } from '@/types/auth.type'
 import { createServerOnlyFn } from '@tanstack/react-start'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { betterAuth } from 'better-auth/minimal'
 import { customSession } from 'better-auth/plugins'
 import { tanstackStartCookies } from 'better-auth/tanstack-start'
-import { sessionHook } from '@/auth/hooks/auth.hooks'
-import { database } from '@/database/config/database.config'
-import { sendEmail } from '@/email/utils/email.utils'
-import type { AuthProviderWithEmail } from '@/types/auth.type'
 
 const auth = createServerOnlyFn(() =>
   betterAuth({
     baseURL: process.env.VITE_BASE_URL as string,
     plugins: [
-      tanstackStartCookies(),
       customSession(async ({ user, session }) => {
         return {
           user,
@@ -22,7 +21,8 @@ const auth = createServerOnlyFn(() =>
               .accountId
           }
         }
-      })
+      }),
+      tanstackStartCookies()
     ],
     database: drizzleAdapter(database, {
       provider: 'pg',

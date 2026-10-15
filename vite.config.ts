@@ -6,6 +6,11 @@ import { RolldownConfig } from 'nitro/types'
 import { nitro } from 'nitro/vite'
 import { defineConfig, loadEnv } from 'vite'
 
+const IGNORED_WARNINGS: ReadonlySet<string> = new Set([
+  'MODULE_LEVEL_DIRECTIVE',
+  'MISSING_CODE_SPLITTING_GROUP_DEBUG_NAME'
+])
+
 const buildOptions = (
   rollupAttribute: 'rolldownConfig' | 'rolldownOptions'
 ) => {
@@ -19,6 +24,13 @@ const buildOptions = (
       output: {
         sourcemap: false,
         minifyInternalExports: true
+      },
+      onwarn(warning, defaultHandler) {
+        if (warning.code && IGNORED_WARNINGS.has(warning.code)) {
+          return
+        }
+
+        defaultHandler(warning)
       }
     } satisfies RolldownConfig
   }

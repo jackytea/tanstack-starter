@@ -1,6 +1,7 @@
-import type { JSX } from 'react'
 import { APP } from '@/constants/app.constants'
 import packageJson from '@/package'
+import { useRouteContext } from '@tanstack/react-router'
+import type { JSX } from 'react'
 
 const icons: {
   icon: JSX.Element
@@ -66,13 +67,17 @@ const icons: {
 ]
 
 const Footer = () => {
+  const { year } = useRouteContext({
+    from: '__root__'
+  })
+
   return (
     <div className="relative">
       <hr className="absolute w-full border-gray-200 dark:border-stone-800" />
       <footer className="container bg-white dark:bg-stone-950">
         <div className="flex items-center justify-between gap-y-10 border-x border-gray-200 px-4 py-6 dark:border-stone-800">
           <p className="text-sm font-semibold tracking-tight text-neutral-500 sm:text-center dark:text-neutral-400">
-            &copy; {new Date().getFullYear()}, {APP.NAME} {packageJson.version}
+            &copy; {year}, {APP.NAME} {packageJson.version}
           </p>
           <div className="flex items-center gap-x-4">
             {icons.map((icon, index) => (

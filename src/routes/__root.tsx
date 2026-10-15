@@ -1,12 +1,3 @@
-import { QueryClient } from '@tanstack/react-query'
-import {
-  createRootRouteWithContext,
-  HeadContent,
-  Outlet,
-  ScriptOnce,
-  Scripts
-} from '@tanstack/react-router'
-import type { ReactNode } from 'react'
 import { rootThemeScript } from '@/components/ThemeToggle/ThemeToggle.utils'
 import { APP } from '@/constants/app.constants'
 import { QUERY_KEYS } from '@/constants/query.constants'
@@ -16,6 +7,15 @@ import { NotFound } from '@/pages/NotFound/NotFound'
 import { getCurrentSession } from '@/services/auth.service'
 import appCss from '@/styles/index.css?url'
 import { UserWithAccount } from '@/types/user.type'
+import { QueryClient } from '@tanstack/react-query'
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  Outlet,
+  ScriptOnce,
+  Scripts
+} from '@tanstack/react-router'
+import type { ReactNode } from 'react'
 
 const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
@@ -49,12 +49,13 @@ export const Route = createRootRouteWithContext<{
   user: Awaited<ReturnType<typeof getCurrentSession>>
 }>()({
   beforeLoad: async ({ context }) => {
-    const user = await context.queryClient.fetchQuery({
+    const year = new Date().getFullYear()
+    const user = await context.queryClient.query({
       queryKey: [QUERY_KEYS.AUTH],
       queryFn: ({ signal }) => getCurrentSession({ signal })
     })
 
-    return { user } as { user: UserWithAccount | null }
+    return { user, year } as { user: UserWithAccount | null; year: number }
   },
   head: () => ({
     meta: [
